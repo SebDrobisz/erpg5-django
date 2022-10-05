@@ -17,7 +17,7 @@ Dans notre application, nous possédons plusieurs vues. Parmi celles-ci :
 
 * une page d'accueil ;
 * une page qui liste les développeurs ;
-* une page qui donne le détail des dévelopepurs - c'est-à-dire le nom, prénom ainsi que toutes ses tâches ;
+* une page qui donne le détail des développeurs - c'est-à-dire le nom, prénom ainsi que toutes ses tâches ;
 * une page pour l'ensemble des tâches...
 
 Dans Django, les pages Web et les autres contenus sont générés par des vues. Chaque vue est représentée par une fonction Python. Django choisit une vue en examinant l’URL demandée (pour être précis, la partie de l’URL après le nom de domaine).
@@ -34,7 +34,7 @@ De plus, il y a un problème : l’allure de la page est codée en dur dans la v
 
 Tout d’abord, créez un répertoire nommé `templates` dans votre répertoire `developer`. C’est là que Django recherche les gabarits.
 
-Le paramètre `TEMPLATES` de votre projet indique comment Django va charger et produire les gabarits. Le fichier de réglages par défaut configure un moteur DjangoTemplates dont l’option `APP_DIRS` est définie à True. Par convention, DjangoTemplates recherche un sous-répertoire « templates » dans chaque application figurant dans `INSTALLED_APPS`. (Allez vérifier la présence de cette option dans le fichier `mproject/settings.py` ⭐️)
+Le paramètre `TEMPLATES` de votre projet indique comment Django va charger et produire les gabarits. Le fichier de réglages par défaut configure un moteur DjangoTemplates dont l’option `APP_DIRS` est définie à True. Par convention, DjangoTemplates recherche un sous-répertoire `templates` dans chaque application figurant dans `INSTALLED_APPS`. (Allez vérifier la présence de cette option dans le fichier `mproject/settings.py` ⭐️)
 
 Dans le répertoire `templates` que vous venez de créer, créez un autre répertoire nommé `developer` dans lequel vous placez un nouveau fichier `index.html`. Autrement dit, le chemin de votre gabarit doit être `developer/templates/developer/index.html`. Conformément au fonctionnement du chargeur de gabarit `app_directories` (cf. explication ci-dessus), vous pouvez désigner ce gabarit dans Django par `developer/index.html`.
 
@@ -101,7 +101,7 @@ Chargez la page en appelant l’URL « `/developer/` » dans votre navigateur et
 > 
 > * Supprimez chacun des développeurs et vérifiez que le message "II n'y a aucun développeur enregistré !" soit bien affiché. 
 > * Rajoutez ensuite au moins deux développeurs.
-> * Modifier le template pour ajouter le nom des développeurs.
+> * Modifier le gabarit pour ajouter le nom des développeurs.
 
 ## Une deuxième vue
 
@@ -109,7 +109,7 @@ Nous allons ajouter une deuxième vue qui va nous permettre d'afficher le détai
 
 1. Ajout d'une URL qui pointe vers la nouvelle vue
 1. Ajout d'une vue
-1. Ajout d'un nouveau template.
+1. Ajout d'un nouveau gabarit.
 
 <div class="path">developer/urls.py</div>
 
@@ -157,7 +157,7 @@ def detail(request, developer_id): 👈new
 
 Ouvrez votre navigateur à l’adresse « `/developer/3/` ». La méthode `detail()` sera exécutée et affichera le développeur fourni dans l’URL.
 
-> 📃Nous vous suggérons ici d'utiliser la valeur 3 pour l'adresse. Cette valeur devrait correspond à l'id du développeur que vous avez recréé après avoir supprimé, comme demandé, les deux développeurs "sdr" et "jlc". Si vous avez un doute, vous pouvez aller dans le `shell` et lancer la commande `[dev.id for dev in Developer.objects.all()]` après avoir importé la classe `Developer`. Cette commande va vous retourner la liste des ids présents dans la base de donnée. (Ce code n'a rien de magique, il s'agit de la constitution d'une liste sur base d'un parcours des développeurs disponibles dans la BDD.)
+> 📃 Nous vous suggérons ici d'utiliser la valeur 3 pour l'adresse. Cette valeur devrait correspond à l'id du développeur que vous avez recréé après avoir supprimé, comme demandé, les deux développeurs "sdr" et "jlc". Si vous avez un doute, vous pouvez aller dans le `shell` et lancer la commande `[dev.id for dev in Developer.objects.all()]` après avoir importé la classe `Developer`. Cette commande va vous retourner la liste des ids présents dans la base de donnée. (Ce code n'a rien de magique, il s'agit de la constitution d'une liste sur base d'un parcours des développeurs disponibles dans la BDD.)
 
 Lorsque quelqu’un demande une page de votre site Web, par exemple « `/developer/3/` », Django charge le module Python `mproject.urls` parce qu’il est mentionné dans le réglage `ROOT_URLCONF`. Il trouve la variable nommée `urlpatterns` et parcourt les motifs dans l’ordre. Après avoir trouvé la correspondance 'developer/', il retire le texte correspondant ("developer/") et passe le texte restant – "3/" – à la configuration d’URL “developer.urls” pour la suite du traitement. Dans le cas présent, c’est `<int:developer_id>/` qui correspond, ce qui aboutit à un appel à la vue `detail()` comme ceci :
 
@@ -202,7 +202,7 @@ La fonction `get_object_or_404()` prend un modèle Django comme premier paramèt
 ### Lien entre les vues
 
 Pour passer d'une vue à l'autre, nous allons naturellement utiliser des liens `html` (`<a>`).
-Revenons dans la vue `index` et plus précisément dans le template et ajoutons ces liens.
+Revenons dans la vue `index` et plus précisément dans le gabarit et ajoutons ces liens.
 
 <div class="path">developer/templates/developer/index.html</div>
 
@@ -226,7 +226,7 @@ Vous pouvez maintenant essayer d'aller sur l'index de votre site et suivre les l
 
 #### Configurer les chemins via `{% url %}`
 
-Le problème de cette approche codée en dur et fortement couplée est qu’il devient fastidieux de modifier les URL dans des projets qui ont beaucoup de templates. Cependant, comme vous avez défini le paramètre « name » dans les fonctions `path()` du module `developer.urls`, vous pouvez supprimer la dépendance en chemins d’URL spécifiques définis dans les configurations d’URL en utilisant la balise de template `{% url %}` :
+Le problème de cette approche codée en dur et fortement couplée est qu’il devient fastidieux de modifier les URL dans des projets qui ont beaucoup de gabarits. Cependant, comme vous avez défini le paramètre « name » dans les fonctions `path()` du module `developer.urls`, vous pouvez supprimer la dépendance en chemins d’URL spécifiques définis dans les configurations d’URL en utilisant la balise de gabarit `{% url %}` :
 
 <div class="path">developer/templates/developer/index.html</div>
 
@@ -252,7 +252,7 @@ path('specifics/<int:developer_id>/', views.detail, > name='detail'), #👈 ajou
 
 #### Espaces de noms et noms d’URL
 
-Le projet ne contient actuellement qu'une seule application, developer. Plus tard, une autre application va se greffer à notre projet. Comment Django arrive-t-il à différencier les noms d’URL entre elles ? Par exemple, l’application developer possède une vue `detail` et il se peut tout à fait qu’une autre application du même projet en possède aussi une. Comment peut-on indiquer à Django quelle vue d’application il doit appeler pour une URL lors de l’utilisation de la balise de gabarit `{% url %}` ?
+Le projet ne contient actuellement qu'une seule application, `developer`. Plus tard, une autre application va se greffer à notre projet. Comment Django arrive-t-il à différencier les noms d’URL entre elles ? Par exemple, l’application `developer` possède une vue `detail` et il se peut tout à fait qu’une autre application du même projet en possède aussi une. Comment peut-on indiquer à Django quelle vue d’application il doit appeler pour une URL lors de l’utilisation de la balise de gabarit `{% url %}` ?
 
 La réponse est donnée par l’ajout d’espaces de noms à votre configuration d’URL. Dans le fichier `developer/urls.py`, ajoutez une variable `app_name` pour définir l’espace de nom de l’application :
 

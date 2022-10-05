@@ -30,7 +30,7 @@ export const KNOWN_LANGUAGES = {
 } as const;
 export const KNOWN_LANGUAGE_CODES = Object.values(KNOWN_LANGUAGES);
 
-export const GITHUB_EDIT_URL = `https://github.com/withastro/astro/tree/main/examples/docs`;
+export const GITHUB_EDIT_URL = `https://git.esi-bru.be/private/django-site`;
 
 export const COMMUNITY_INVITE_URL = `https://astro.build/chat`;
 
@@ -51,7 +51,11 @@ export const SIDEBAR: Sidebar = {
 			{ text: 'Introduction', link: 'fr/django/introduction' },
 			{ text: 'Ma première vue', link: 'fr/django/first-view' },
 			{ text: 'Mon premier modèle', link: 'fr/django/first-model' },
-			{ text: 'Vues et templates - introduction', link: 'fr/django/view-templates-intro' },
+			{ text: 'Vues et gabarits - introduction', link: 'fr/django/view-templates-intro' },
+			{ text: 'Héritage de gabarit', link: 'fr/django/template-inheritance' },
+			{ text: 'Formulaire', link: 'fr/django/forms' },
+			{ text: 'Vues génériques', link: 'fr/django/generic-views' },
+			{ text: 'Incrustation de gabarit', link: 'fr/django/template-include' },
 		],
 	},
 };
