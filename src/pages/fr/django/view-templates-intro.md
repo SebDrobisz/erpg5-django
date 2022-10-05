@@ -216,7 +216,7 @@ Revenons dans la vue `index` et plus précisément dans le gabarit et ajoutons c
         {% endfor %}
     </ul>
     {% else %}
-        <p><strong>Il n'y a aucune dévelopeur enregistré !</strong>/p>
+        <p><strong>Il n'y a aucun développeur enregistré !</strong>/p>
     {% endif %}
 # ...
 </body>

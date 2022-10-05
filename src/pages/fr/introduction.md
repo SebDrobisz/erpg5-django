@@ -8,13 +8,19 @@ layout: ../../layouts/MainLayout.astro
 
 4 séances sont prévues.
 
-1. Séance 1
+1. Introduction
     * Introduction
     * Ma première vue
     * Mon premier modèle
     * Vues et gabarits - introduction
-1. Séance 2
+1. Vues et gabarits
     * Héritage et gabarit
     * Formulaire
     * Vues génériques
     * Incrustation de gabarit
+1. Concepts divers
+    * Les tests
+    * PostgreSQL
+    * Amélioration des pages développeurs
+    * Gestion des tâches
+1. Sécurité

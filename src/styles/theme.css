@@ -128,7 +128,8 @@ body {
 	text-align: right;
 	font-size: smaller;
 	font-style: italic;
-	color: var(--theme-text-light)
+	color: var(--theme-text-light);
+	padding-right: 8px;
 }
 
 .path + pre.astro-code {

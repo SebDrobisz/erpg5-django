@@ -8,7 +8,7 @@ On peut imaginer que pour une utilisation normale de l'application, l'ajout d'un
 
 Nous allons donc vous proposer de cacher ce formulaire dans un _Modal_, mis joliment en forme et le rendre réutilisable.
 
-## `Modal`
+## Modal
 
 Un modal est une sorte de boîte de dialogue qui est affichée devant la page courante lorsqu'un évènement survient ou que l'utilisateur en fait la demande. Avant de le rendre réutilisable, ajoutons-le dans le gabarit `index.html`.
 
@@ -143,16 +143,17 @@ Dans Django, il est possible d'ajouter facilement des apps externes. Nous allons
 ```
 
 4. Modifiez `{{ form }}` ou (`{{ form.as_qqc }}`) par `{{ form|crispy }}` et enfin, chargez le tag crispy dans votre template formulaire. Cela se fait grâce à la balise `{% load %}`.
-   > `developer/_create_dev_modal.html`
-   > 
-   > ```html    
-   > {% load crispy_forms_tags %}                   👈 new
-   >   
-   >   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-dev-modal">Add user</button>
-   >   #...
-   >                       <!-- {{ form.as_p }} --> 👈 old
-   >                       {{ form|crispy }}        👈 new
-   >   #...
-   > ```
+
+<div class="path">developer/template/developer/_create_dev_modal_.html</div>
+   
+```html    
+   {% load crispy_forms_tags %}                   👈 new
+    
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-dev-modal">Add user</button>
+    #...
+                        <!-- {{ form.as_p }} --> 👈 old
+                        {{ form|crispy }}        👈 new
+    #...
+```
 
 Votre formulaire propre et réutilisable est terminé.

@@ -1,5 +1,5 @@
 export const SITE = {
-	title: 'he2b sdr',
+	title: 'ERPG5 - Django',
 	description: 'Your website description.',
 	defaultLanguage: 'fr_BE',
 };
@@ -56,6 +56,10 @@ export const SIDEBAR: Sidebar = {
 			{ text: 'Formulaire', link: 'fr/django/forms' },
 			{ text: 'Vues génériques', link: 'fr/django/generic-views' },
 			{ text: 'Incrustation de gabarit', link: 'fr/django/template-include' },
+			{ text: 'Les tests', link: 'fr/django/tests' },
+			{ text: 'PostgreSQL', link: 'fr/django/postgresql' },
+			{ text: 'Amélioration des pages développeurs', link: 'fr/django/developer-improvement' },
+			{ text: 'Gestion des tâches', link: 'fr/django/tasks-management' },
 		],
 	},
 };
