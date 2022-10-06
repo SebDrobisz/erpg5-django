@@ -6,110 +6,82 @@ layout: ../../../layouts/MainLayout.astro
 
 Nous allons maintenant ajouter la gestion des tâches. Attention, nous allons installer les bases ensemble, vous ferez le reste seul.
 
-### App Task
+## Création du modèle
 
 Actuellement, les tâches (`Task`) sont dans le modèle `developer`. Nous avons choisi cela afin de rentrer plus rapidement dans la matière.
 
 ⭐️ Commencez par créer et ajouter une nouvelle application `task` et ensuite, déplacez le modèle de `Task` dans cette nouvelle application.
 
-### Ajout d'une nouvelle vue index
+Pensez à :
 
-#### Ajout de la liste des tâches
+* écrire la méthode `__str__(self)` ;
+* ajouter l'application dans le fichier `settings.py` ;
+* gérer la migration dans la base de donnée.
 
-⭐️ Inspirez-vous de ce qui a déjà été fait pour ajouter une nouvelle vue qui permet uniquement d'afficher la liste de toutes les tâches. Si un développeur est assigné à une tâche, son nom doit apparaître à côté. Sinon, il doit être indiqué qu'elle n'est pas assignée.
+## Lister les tâches
 
-#### Activer le bon lien
+⭐️ Inspirez-vous de ce qui a déjà été fait pour ajouter une nouvelle vue qui permet uniquement d'afficher la liste de toutes les tâches. Si un développeur est affecté à une tâche, son nom doit apparaître à côté. Sinon, il doit être indiqué qu'elle n'est pas assignée.
 
-Si vous avez prêté attention, le lien activé dans le menu de navigation reste celui des développeurs. C'est normal puisque nous ne l'avons pas changé.
+Pensez à :
 
-Pour faire cela, nous allons utiliser un gabarit de base pour les applications, mais avant, ajoutons un bloc au gabarit de base du projet.
+* gérer la nouvelle URL (création d'un nouveau fichier `task/urls.py` et modification du fichier `mproject/urls.py`) ;
+* utiliser une vue de type "classe" ;
+* ajouter un nouveau gabarit (pensez à l'héritage de `_base`).
 
-<div class="path">templates/_base.html</div>
+## Suppression d'une tâche
 
-``` html
-    #...
-    {% block content %}
-    {% endblock content %}
-
-    <script>
-        {% block menu-script %}
-            $("#nav-home").addClass('active')
-            $("#nav-dev").removeClass('active')
-            $("#nav-task").removeClass('active')
-        {% endblock menu-script %}
-    </script>
-</body>
-```
-
-Dans ce bloc, nous ajoutons un peu de JQuery nous permettant d'activer le bon lien. Par défaut, c'est naturellement le lien home qui doit être activé.
-
-Dans le dossier `templates/task` ajoutez maintenant un nouveau gabarit nommé `_base.html`
-Celui-ci doit étendre le gabarit du projet et activer le bon lien.
-
-<div class="path">task/templates/task/_base.html</div>
-
- 
-```html
-{% extends "_base.html" %}
-
-{% block title %}GProject - Gestion des tâches{% endblock title %}
-
-{% block menu-script %}
-    $("#nav-home").removeClass('active')
-    $("#nav-dev").removeClass('active')
-    $("#nav-task").addClass('active')
-{% endblock menu-script %}
-```
-
-Et enfin, le gabarit `templates/task/index.html` doit hériter de ce nouveau template. Attention, puisqu'il y a
-maintenant deux gabarits nommé `_base.html`, il faut bien indiquer l'application.
-
-<div class="path">task/templates/task/index.html</div>
-
-```html
-{% extends "_base.html" %}        👈old
-{% extends "task/_base.html" %}   👈new
-```
-
-Voilà, c'est terminé, mais dans ce processus, vous pourrez remarquer que le lien ne s'active plus lorsque nous cliquons sur l'onglet `developers`. C'est normal... Il faut également ajoutez un gabarit de base à cette application... Faites-le ! N'oubliez pas qu'il y a deux vues à adapter! ⭐️
-
-### Suppression d'une tâche
-
-Modifiez le code `templates/task/index.html` en ajoutant ces quelques lignes : 
+Pour chacune des tâches listées, ajoutez un bouton pour la supprimer.
 
 <div class="path">task/templates/task/index.html</div>
 
 ``` html
 #...
 <li class="list-group-item">
-   <form action="{% url 'task:delete' task.id %}" method="post">
-       {% csrf_token %}
-       <button class="close" type="submit"><i class="fa fa-trash"></i></button>
-   </form>
-#...
+    <form action="{% url 'task:delete' task.id %}" method="post">
+        {% csrf_token %}
+        <button class="close" type="submit"><i class="fa fa-trash"></i></button>
+    </form>
+
+    # ... 
 ```
 
 Ce bout de code permet d'ajouter une corbeille pour supprimer une tâche.
 
 ⭐️ Ajoutez le code nécessaire afin d'ajouter la fonctionnalité de suppression de tâches.
 
-### Création d'une tâche
+## Création d'une tâche
 
-#### Dans la page d'index des tâches
+Ajoutons la possibilité d'ajouter des tâches
+
+1. dans la vue tâche,
+1. dans la vue d'un développeur.
+
+Après l'ajout d'une tâche, l'application redirige vers l'index des tâches.
+
+
+### Dans la page d'index des tâches
 
 ⭐️ On vous donne un petit coup de pouce et le reste est dans vos mains.
 
-> 🐇 Précédemment, vous avez créé un formulaire pour la création de développeur. Vous allez devoir faire la même chose ici. Le champ `assignee` pourra vous poser problème. Le voici
-> ```python
-> assignee = forms.ModelChoiceField(queryset=Developer.objects.all(), required=False)
-> ```
-> 
-> Vous trouverez davantage de doc sur le `ModelChoiceField` [ici](https://docs.djangoproject.com/fr/3.1/topics/forms/modelforms/).
+> Précédemment, vous avez créé un formulaire pour la création de développeur. 
+> * 🐇 En définissant un nouveau formulaire qui hérite de `forms.Form`.
+>    Le champ `assignee` pourra vous poser problème. Le voici
+>    ```python
+>    assignee = forms.ModelChoiceField(queryset=Developer.objects.all(), required=False)
+>    ```
+>    Vous trouverez davantage de doc sur le `ModelChoiceField` [ici](https://docs.djangoproject.com/fr/3.1/topics/forms/modelforms/).
+> * 🧙 Mais vous pouvez également utiliser l'héritage de `ModelForm` plutôt que de définir les champs du formulaire.
 
-Si vous utilisez l'héritage de `FormModel`, ce sera encore plus facile.
+### Dans le détail d'un développeur
 
-#### Dans le détail d'un dévelopeur
-
-⭐️ Ajoutez la possibilité de créer une tâche dans la vue détail d'un développeur. Lorsqu'une tâche sera créé, l'utilisateur sera redirigé vers l'index des tâches. Ce n'est pas optimal, mais nous ferons avec.
-* Il serait agréable que le formulaire soit pré-rempli au niveau du développeur assigné. Lisez la documentation des formulaires (paramètre `initial`).
+⭐️ Ajoutez la possibilité de créer une tâche dans la vue détail d'un développeur. Lorsqu'une tâche sera créée, l'utilisateur sera redirigé vers l'index des tâches. Ce n'est pas optimal, mais nous ferons avec.
+* Il serait agréable que le formulaire soit prérempli au niveau du développeur assigné. Lors de l'ajout du formulaire dans le contexte de la page détail d'un développeur, ajoutez une valeur initiale pour le champ `assignee` du formulaire ([exemple](https://docs.djangoproject.com/en/4.1/ref/forms/api/#initial-form-values)).
 * Il serait aussi bien de ne pas exposer l'utilisateur à une erreur possible. Désactivez le champ pour que celui-ci ne soit pas modifiable. Attention, un champ désactivé n'est pas envoyé dans les données `POST`.
+   Aide : 
+
+   * [Désactiver un champ](https://docs.djangoproject.com/en/4.1/ref/forms/fields/#disabled)
+   * `<un formulaire>.fields` permet d'accéder aux champs d'un formulaire. Chaque clé représente le nom d'un champ et la valeur associé le champ lui-même (l'objet python).
+   * En Python 🐍, il est possible d'ajouter des valeurs par défauts aux arguments. Exemple : `def create(request, developer_id=None):`
+   * Pour qu'un champ ne soit pas obligatoire, il faut que son attribut `blank` soit mis à `True`.
+   * Deux chemins (`path`) peuvent avoir le même nom, à condition d'avoir des motifs de route différents.
+   * Pensez au concept DRY et à la manière dont nous avons créé le modal pour la création d'un développeur. Vous aurez besoin de `request.resolver_match.app_name` pour savoir si vous ajoutez la création d'une tâche à partir d'un développeur ou à partir de l'index des tâches.

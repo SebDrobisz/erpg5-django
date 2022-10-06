@@ -60,6 +60,7 @@ export const SIDEBAR: Sidebar = {
 			{ text: 'PostgreSQL', link: 'fr/django/postgresql' },
 			{ text: 'Amélioration des pages développeurs', link: 'fr/django/developer-improvement' },
 			{ text: 'Gestion des tâches', link: 'fr/django/tasks-management' },
+			{ text: 'Gestion des onglets actifs', link: 'fr/django/tab-management'},
 		],
 	},
 };

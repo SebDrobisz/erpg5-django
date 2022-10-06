@@ -23,4 +23,5 @@ layout: ../../layouts/MainLayout.astro
     * PostgreSQL
     * Amélioration des pages développeurs
     * Gestion des tâches
+    * Gestion des onglets actifs
 1. Sécurité
