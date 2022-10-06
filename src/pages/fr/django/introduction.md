@@ -14,10 +14,10 @@ Les objectifs de ces premiers laboratoires sont multiples.
   * Les modules...
 * Découvrir un framework web Python qui partage de nombreuses similitudes avec la suite logiciel Odoo dont vous apprendrez à créer une application.
 
-Ce cours est basé sur les sources suivantes : 
- * Le [tutoriel Django](https://docs.djangoproject.com/fr/3.1/intro/tutorial01/)
- * La [documentation Django](https://docs.djangoproject.com/en/3.1/)
- * [Django for professionals](https://djangoforprofessionals.com/)
+<!-- Quelques sources qui ont permis l'écriture de ce tutoriel.
+ * Le [tutoriel Django](https://docs.djangoproject.com/fr/4.1/intro/tutorial01/)
+ * La [documentation Django](https://docs.djangoproject.com/en/4.1/)
+ * [Django for professionals](https://djangoforprofessionals.com/) -->
 
 ## Installation
 
@@ -40,7 +40,7 @@ Pour procéder à l'installation, nous vous conseillons
 
 ## Légende
 
-Il s'agit d'un cours avant tout, parfois vous verrez différents emoji. Ceux-ci permettent d’attirer votre attention de différentes manières.
+Il s'agit d'un cours avant tout, parfois vous verrez différents émoji. Ceux-ci permettent d’attirer votre attention de différentes manières.
 
 |Emoji|Signification|
 |---|---|
@@ -91,8 +91,8 @@ Voici quelques explications :
 * **mproject/\_\_init\_\_.py** : un fichier vide qui indique à Python que ce répertoire doit être considéré comme un paquet. Si vous êtes débutant en Python, lisez les informations sur les paquets (en) dans la documentation officielle de Python.
 * **mproject/settings.py** : réglages et configuration de ce projet Django. Ce cours de Django vous apprendra tout sur le fonctionnement des réglages (enfin presque tout).
 * **mproject/urls.py** : les déclarations des URL de ce projet Django, une sorte de « table des matières » de votre site Django. Vous pouvez en lire plus sur les URL dans Distribution des URL.
-* **mproject/asgi.py** : un point d’entrée pour les serveurs Web compatibles aSGI pour déployer votre projet. Voir [Comment déployer avec ASGI pour plus de détails](https://docs.djangoproject.com/fr/3.1/howto/deployment/asgi/).
-* **mproject/wsgi.py** : un point d’entrée pour les serveurs Web compatibles WSGI pour déployer votre projet. Voir [Comment déployer avec WSGI pour plus de détails](https://docs.djangoproject.com/fr/3.1/howto/deployment/wsgi/).
+* **mproject/asgi.py** : un point d’entrée pour les serveurs Web compatibles aSGI pour déployer votre projet. Voir [Comment déployer avec ASGI pour plus de détails](https://docs.djangoproject.com/fr/4.1/howto/deployment/asgi/).
+* **mproject/wsgi.py** : un point d’entrée pour les serveurs Web compatibles WSGI pour déployer votre projet. Voir [Comment déployer avec WSGI pour plus de détails](https://docs.djangoproject.com/fr/4.1/howto/deployment/wsgi/).
 
 #### Outils de développement
 

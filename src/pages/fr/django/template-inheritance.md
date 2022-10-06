@@ -111,7 +111,7 @@ Les gabarits ont été modifiés afin que les morceaux de code soient placés co
 
 Vérifiez que votre site fonctionne toujours aussi bien qu'avant. ⭐️
 
-Pour plus d'information sur les balises, lisez cette [page](https://docs.djangoproject.com/fr/3.1/ref/templates/builtins/).
+Pour plus d'information sur les balises, lisez cette [page](https://docs.djangoproject.com/fr/4.1/ref/templates/builtins/).
 
 ## Un peu de style avec Bootstrap5 et Font-Awesome
 

@@ -86,11 +86,11 @@ class Task(models.Model):
 
 Pour plus d'information sur les champs : 
 
-* [Options des champs](https://docs.djangoproject.com/fr/3.1/ref/models/fields/) 📖 ;
-* [Type des champs](https://docs.djangoproject.com/fr/3.1/ref/models/fields/#field-types) 📖 ;
-* [plusieurs-à-plusieurs](https://docs.djangoproject.com/fr/3.1/topics/db/examples/many_to_many/) 📖 ;
-* [plusieurs-à-un](https://docs.djangoproject.com/fr/3.1/topics/db/examples/many_to_one/) 📖 ;
-* [un-à-un](https://docs.djangoproject.com/fr/3.1/topics/db/examples/one_to_one/) 📖.
+* [Options des champs](https://docs.djangoproject.com/fr/4.1/ref/models/fields/) 📖 ;
+* [Type des champs](https://docs.djangoproject.com/fr/4.1/ref/models/fields/#field-types) 📖 ;
+* [plusieurs-à-plusieurs](https://docs.djangoproject.com/fr/4.1/topics/db/examples/many_to_many/) 📖 ;
+* [plusieurs-à-un](https://docs.djangoproject.com/fr/4.1/topics/db/examples/many_to_one/) 📖 ;
+* [un-à-un](https://docs.djangoproject.com/fr/4.1/topics/db/examples/one_to_one/) 📖.
 
 #### Activation du modèle et migrations
 
@@ -235,7 +235,7 @@ Nous utilisons celle-ci au lieu de simplement taper « python », parce que `man
 
 📃 Notez que cette API est utilisée plus loin pour la manipulation des modèles. La maîtrise de celle-ci est donc essentiel pour le développement d'application Web avec Django ! ⚠️
 
-Une fois dans le shell, explorez [l'api de base de donnée](https://docs.djangoproject.com/fr/3.1/topics/db/queries/) 📖.
+Une fois dans le shell, explorez [l'api de base de donnée](https://docs.djangoproject.com/fr/4.1/topics/db/queries/) 📖.
 
 ``` python
 >>> from developer.models import Developer, Task
@@ -245,8 +245,8 @@ Une fois dans le shell, explorez [l'api de base de donnée](https://docs.djangop
 
 On obtient un _QuerySet_ en utilisant le _Manager_ du modèle. Chaque modèle a au moins un Manager ; il s’appelle _objects_ par défaut.
 
-* [QuerySet](https://docs.djangoproject.com/fr/3.1/ref/models/querysets/#django.db.models.query.QuerySet) 📖
-* [Manager](https://docs.djangoproject.com/fr/3.1/topics/db/managers/#django.db.models.Manager) 📖
+* [QuerySet](https://docs.djangoproject.com/fr/4.1/ref/models/querysets/#django.db.models.query.QuerySet) 📖
+* [Manager](https://docs.djangoproject.com/fr/4.1/topics/db/managers/#django.db.models.Manager) 📖
 
 Ici, le QuerySet est vide puisque aucun élément n'a été créé.
 
@@ -332,7 +332,7 @@ Continuons sur notre lancée
 > >>> jlc.tasks.create(title='cours Odoo', description='Faire le cours sur Odoo')
 > ```
 
-Si vous avez lu le tuto [ici](https://docs.djangoproject.com/fr/3.1/intro/tutorial02/) vous avez pu remarquer que nous utilisons `tasks` plutôt que `task_set`. Cela nous est possible puisque nous avons défini le paramètre `relative_name` dans notre modèle `Task`.
+Si vous avez lu le tuto [ici](https://docs.djangoproject.com/fr/4.1/intro/tutorial02/) vous avez pu remarquer que nous utilisons `tasks` plutôt que `task_set`. Cela nous est possible puisque nous avons défini le paramètre `relative_name` dans notre modèle `Task`.
 
 > ```python
 > >>> jlc.tasks.all()   
@@ -350,5 +350,5 @@ Si vous avez lu le tuto [ici](https://docs.djangoproject.com/fr/3.1/intro/tutori
 
 ##### Toujours plus d'information 📖 :
 
-* [Recherche dans les champs](https://docs.djangoproject.com/fr/3.1/topics/db/queries/#field-lookups-intro).
-* [Référence des objets liés](https://docs.djangoproject.com/fr/3.1/ref/models/relations/).
+* [Recherche dans les champs](https://docs.djangoproject.com/fr/4.1/topics/db/queries/#field-lookups-intro).
+* [Référence des objets liés](https://docs.djangoproject.com/fr/4.1/ref/models/relations/).

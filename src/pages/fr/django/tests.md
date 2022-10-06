@@ -6,7 +6,7 @@ layout: ../../../layouts/MainLayout.astro
 
 Avant d'aller plus loin, il est temps de procéder à la rédaction de tests.
 
-Si vous vous posez la question de ce qu'est des tests automatisés, quelle est leur utilité ou encore quelle stratégie mettre en œuvre pour élaborer les tests. Alors commencez par lire l'introduction de [ce tutoriel](https://docs.djangoproject.com/fr/3.1/intro/tutorial05/).
+Si vous vous posez la question de ce qu'est des tests automatisés, quelle est leur utilité ou encore quelle stratégie mettre en œuvre pour élaborer les tests. Alors commencez par lire l'introduction de [ce tutoriel](https://docs.djangoproject.com/fr/4.1/intro/tutorial05/).
 
 ## Tests du modèle
 
@@ -101,7 +101,7 @@ def setUp(self):                                                            👈
     dev = Developer.objects.get(first_name="Sébastien") 👈 new
 ```
 
-Pour plus d'informations sur la configuration des tests, vous pouvez lire [ce lien](https://docs.djangoproject.com/fr/3.1/topics/testing/overview/).
+Pour plus d'informations sur la configuration des tests, vous pouvez lire [ce lien](https://docs.djangoproject.com/fr/4.1/topics/testing/overview/).
 
 ## Tests de la vue
 

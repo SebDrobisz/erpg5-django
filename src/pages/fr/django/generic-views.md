@@ -163,11 +163,11 @@ Les vues génériques sont basées sur le principe de Mixin. Wikipédia le défi
 > "En programmation orientée objet, un mixin ou une classe mixin est une classe destinée à être composée par héritage multiple avec une autre classe pour lui apporter des fonctionnalités. C'est un cas de réutilisation d'implémentation. Chaque mixin représente un service qu'il est possible de greffer aux classes héritières. "
 > [Wikipédia](https://fr.wikipedia.org/wiki/Mixin)
 
-Maintenant que vous savez ce que c'est, il vous suffit de savoir quelle fonctionnalité est greffée à votre classe. Vous trouverez ces informations dans la documentation. Par exemple, pour DetailView vous trouverez les Mixin utilisés et donc les fonctionnalités [ici](https://docs.djangoproject.com/fr/3.1/ref/class-based-views/generic-display/).
+Maintenant que vous savez ce que c'est, il vous suffit de savoir quelle fonctionnalité est greffée à votre classe. Vous trouverez ces informations dans la documentation. Par exemple, pour DetailView vous trouverez les Mixin utilisés et donc les fonctionnalités [ici](https://docs.djangoproject.com/fr/4.1/ref/class-based-views/generic-display/).
 
 Quelques exemples :
-* Comment je sais que le template par défaut pour une classe qui hérite de `ListView`est `<nom_app>/<nom_modèle><suffixe_gabarit>.html` ? Cela est ajouté grâce au [MultipleObjectTemplateResponseMixin](https://docs.djangoproject.com/fr/3.1/ref/class-based-views/mixins-multiple-object/#multipleobjecttemplateresponsemixin) dont hérite la classe `ListView`.
-* Et pour `get_context_data()` ? Alors là c'est dans [ContextMixin](https://docs.djangoproject.com/fr/3.1/ref/class-based-views/mixins-multiple-object/)
+* Comment je sais que le template par défaut pour une classe qui hérite de `ListView`est `<nom_app>/<nom_modèle><suffixe_gabarit>.html` ? Cela est ajouté grâce au [MultipleObjectTemplateResponseMixin](https://docs.djangoproject.com/fr/4.1/ref/class-based-views/mixins-multiple-object/#multipleobjecttemplateresponsemixin) dont hérite la classe `ListView`.
+* Et pour `get_context_data()` ? Alors là c'est dans [ContextMixin](https://docs.djangoproject.com/fr/4.1/ref/class-based-views/mixins-multiple-object/)
 
 
 Nous vous recommandons également d'aller jeter un coup d'oeil de temps à autre dans le code des vues génériques. Il vous apprendra beaucoup sur leur fonctionnement. Il se trouve [ici](https://github.com/django/django/tree/master/django/views/generic).

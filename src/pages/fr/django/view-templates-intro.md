@@ -167,7 +167,7 @@ detail(request=<HttpRequest object>, developer_id=3)
 
 La partie `developer_id=3` vient de `<int:developer_id>`. En utilisant des chevrons, cela « capture » une partie de l’URL l’envoie en tant que paramètre nommé à la fonction de vue ; la partie `:developer_id>` de la chaîne définit le nom qui va être utilisé pour identifier le motif trouvé, et la partie `<int:` est un convertisseur qui détermine ce à quoi les motifs doivent correspondre dans cette partie du chemin d’URL.
 
-Pour plus d'info sur la distribution d'url, cela se passe [ici](https://docs.djangoproject.com/fr/3.1/topics/http/urls/). 📖
+Pour plus d'info sur la distribution d'url, cela se passe [ici](https://docs.djangoproject.com/fr/4.1/topics/http/urls/). 📖
 
 ### Erreur 404
 

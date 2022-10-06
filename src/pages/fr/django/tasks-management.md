@@ -69,7 +69,7 @@ Après l'ajout d'une tâche, l'application redirige vers l'index des tâches.
 >    ```python
 >    assignee = forms.ModelChoiceField(queryset=Developer.objects.all(), required=False)
 >    ```
->    Vous trouverez davantage de doc sur le `ModelChoiceField` [ici](https://docs.djangoproject.com/fr/3.1/topics/forms/modelforms/).
+>    Vous trouverez davantage de doc sur le `ModelChoiceField` [ici](https://docs.djangoproject.com/fr/4.1/topics/forms/modelforms/).
 > * 🧙 Mais vous pouvez également utiliser l'héritage de `ModelForm` plutôt que de définir les champs du formulaire.
 
 ### Dans le détail d'un développeur
