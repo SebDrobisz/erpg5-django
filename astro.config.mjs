@@ -11,5 +11,4 @@ export default defineConfig({
 		react(),
 	],
 	site: `https://sebdrobisz.github.io`,
-	base: `/erpg5-django`,
 });
