@@ -10,6 +10,6 @@ export default defineConfig({
 		// Enable React for the Algolia search component.
 		react(),
 	],
-	site: `https://drosebastien.github.io`,
-	base: '/erpg5-django',
+	site: `https://sebdrobisz.github.io`,
+	base: `/erpg5-django`,
 });
