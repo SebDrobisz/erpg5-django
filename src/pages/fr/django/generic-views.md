@@ -57,7 +57,7 @@ from .views import DevDetailVue                                👈 new
 #...
 urlpatterns = [
     path('', views.index, name='index'),
-    #path('<int:developer_id>', views.detail, name='detail'),  👈 old
+    #path('<int:developer_id>', views.detail, name='detail'),  👉 old
     path('<int:pk>', DevDetailVue.as_view(), name='detail'),   👈 new
     path('create', views.create, name='create'),
 ]
