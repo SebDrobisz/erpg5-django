@@ -24,4 +24,8 @@ layout: ../../layouts/MainLayout.astro
     * Amélioration des pages développeurs
     * Gestion des tâches
     * Gestion des onglets actifs
-1. Sécurité
+1. Gestion des utilisateurs
+    * Page d'administration
+    * Gestion des utilisateurs
+    * Authentification
+    * Sécurité

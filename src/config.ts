@@ -47,20 +47,30 @@ export type Sidebar = Record<
 >;
 export const SIDEBAR: Sidebar = {
 	fr: {
-		'Django': [
-			{ text: 'Introduction', link: 'erpg5-django/fr/django/introduction' },
-			{ text: 'Ma première vue', link: 'erpg5-django/fr/django/first-view' },
-			{ text: 'Mon premier modèle', link: 'erpg5-django/fr/django/first-model' },
-			{ text: 'Vues et gabarits - introduction', link: 'erpg5-django/fr/django/view-templates-intro' },
-			{ text: 'Héritage de gabarit', link: 'erpg5-django/fr/django/template-inheritance' },
-			{ text: 'Formulaire', link: 'erpg5-django/fr/django/forms' },
-			{ text: 'Vues génériques', link: 'erpg5-django/fr/django/generic-views' },
-			{ text: 'Incrustation de gabarit', link: 'erpg5-django/fr/django/template-include' },
-			{ text: 'Les tests', link: 'erpg5-django/fr/django/tests' },
-			{ text: 'PostgreSQL', link: 'erpg5-django/fr/django/postgresql' },
-			{ text: 'Amélioration des pages développeurs', link: 'erpg5-django/fr/django/developer-improvement' },
-			{ text: 'Gestion des tâches', link: 'erpg5-django/fr/django/tasks-management' },
-			{ text: 'Gestion des onglets actifs', link: 'erpg5-django/fr/django/tab-management'},
+		'1 - Introduction': [
+			{ text: '1.1 - Introduction', link: 'erpg5-django/fr/django/introduction' },
+			{ text: '1.2 - Ma première vue', link: 'erpg5-django/fr/django/first-view' },
+			{ text: '1.3 - Mon premier modèle', link: 'erpg5-django/fr/django/first-model' },
+			{ text: '1.4 - Vues et gabarits - introduction', link: 'erpg5-django/fr/django/view-templates-intro' },
+		],
+		'2 - Vues et gabarits': [
+			{ text: '2.1 - Héritage de gabarit', link: 'erpg5-django/fr/django/template-inheritance' },
+			{ text: '2.2 - Formulaire', link: 'erpg5-django/fr/django/forms' },
+			{ text: '2.3 - Vues génériques', link: 'erpg5-django/fr/django/generic-views' },
+			{ text: '2.4 - Incrustation de gabarit', link: 'erpg5-django/fr/django/template-include' },
+		],
+		'3 - Concepts divers': [
+			{ text: '3.1 - Les tests', link: 'erpg5-django/fr/django/tests' },
+			{ text: '3.2 - PostgreSQL', link: 'erpg5-django/fr/django/postgresql' },
+			{ text: '3.3 - Amélioration des pages développeurs', link: 'erpg5-django/fr/django/developer-improvement' },
+			{ text: '3.4 - Gestion des tâches', link: 'erpg5-django/fr/django/tasks-management' },
+			{ text: '3.5 - Gestion des onglets actifs', link: 'erpg5-django/fr/django/tab-management'},
+		],
+		'4 - Gestion des utilisateurs': [
+			{ text: "4.1 - Page d'administration", link: 'erpg5-django/fr/django/admin-page'},
+			{ text: "4.2 - Gestion des utilisateurs", link: 'erpg5-django/fr/django/user-management'},
+			{ text: "4.3 - Authentification", link: 'erpg5-django/fr/django/authentification'},
+			{ text: "4.4 - Sécurité", link: 'erpg5-django/fr/django/security'},
 		],
 	},
 };

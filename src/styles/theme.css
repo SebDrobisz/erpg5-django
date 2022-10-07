@@ -142,3 +142,7 @@ article img {
 	margin-right: auto;
 	border: 1px solid var(--theme-text-lighter);
 }
+
+.nav-group h2 {
+	font-size: 1.2rem;
+}
