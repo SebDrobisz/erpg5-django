@@ -4,8 +4,6 @@ description:
 layout: ../../../layouts/MainLayout.astro
 ---
 
-### Demande d'authentification
-
 Maintenant que nous avons la capacité de créer des utilisateurs. Nous allons limiter l'accès au site aux utilisateurs connectés et limiter l'accès à certaines fonctionnalités aux utilisateurs qui en ont le droit.
 
 Voici donc la suite du programme :
@@ -14,214 +12,250 @@ Voici donc la suite du programme :
 2. Nous allons empêcher l'accès aux vues d'index des applications `developer` et `task` aux utilisateurs non connecté.
 3. Nous allons ajouter des permissions au niveau de la gestion des tâches afin que certains utilisateurs ne puissent voir que celles qui sont attribuées à travers la description des développeurs, mais pas au travers de la liste des tâches.
 
-#### Une app pour les gouverner toutes
+## Une app pour les gouverner toutes
 
-Pour le moment, `localhost:8000` ne mène vers aucune vue. C'est-à-dire que nous n'avons pas de page d'accueil. Nous allons créer cette page d'accueil. Celle-ci va être placée dans une application.
+Pour le moment, `localhost:8000` ne mène vers aucune vue. Autrement dit, nous n'avons pas de page d'accueil. Nous allons créer cette page d'accueil. Celle-ci va être placée dans une application.
 
-Créez l'application `home`, ajoutez celle-ci dans le fichier `settings.py`.
+Créez l'application `home`, sans oublier de l'installer.
 
-Ajoutez une vue dans cette nouvelle application qui va pointer vers un template qui aurra pour simple rôle de dire bonjour.
+Ajoutez une vue dans cette nouvelle application qui va pointer vers un gabarit qui aura pour simple rôle de dire bonjour.
 
-> `home/views.py`
-> ``` python
-> from django.views.generic import TemplateView
-> 
-> class HomeView(TemplateView):
->     template_name = "home/index.html"
-> ```
+<div class="path">home/views.py</div>
 
-📃 `TemplateView` est une vue très basique qui a pour seul devoir d'afficher un gabarit donné.
+``` python
+from django.views.generic import TemplateView
 
-Ajoutez le template associé à cette vue
+class HomeView(TemplateView):
+    template_name = "home/index.html"
+```
 
-> `home/templates/home/index.html`
-> ```html
-> {% extends "_base.html" %}
-> 
-> {% block content %}
-> <h1>Coucou vous !</h1>
-> {% endblock content%}
-> ```
+📃 `TemplateView` est une vue très basique qui a pour seul but d'afficher un gabarit donné.
 
-Ajoutez les urls de cette application à celle du projet (comme vous avez fait pour les deux autres applications).
+Ajoutez le gabarit associé à cette vue
 
-> `mproject/urls.py`
-> ``` python
-> urlpatterns = [
->     path('admin/', admin.site.urls),
->     path('developer/', include('developer.urls')),
->     path('task/', include('task.urls')),
->     path('', include('home.urls')), 👈 new
-> ]
-> ```
+<div class="path">home/templates/home/index.html</div>
 
-Et enfin, ajoutez un chemin dans le fichier `urls.py` de votre applicaton vers cette nouvelle vue.
+```html
+{% extends "_base.html" %}
 
-> `home/urls.py`
-> 
-> ``` python
-> from django.urls import path
-> 
-> from . import views
->
-> urlpatterns = [
->     path('', views.HomeView.as_view(), name='home'),
-> ]
-> ```
+{% block content %}
+<h1>Bienvenue sur mproject</h1>
+{% endblock content%}
+```
 
-Lancez le serveur et testez ! ⭐️
+Incluez les URLs de cette application à celle du projet (comme vous avez fait pour les deux autres applications).
 
-#### Personnalisation de l'accueil
+<div class="path">mproject/urls.py</div>
 
-Actuellement, le message est assez impersonnel. Modifiez le template afin qu'il corresponde au code ci-dessous.
+``` python
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('developer/', include('developer.urls')),
+    path('task/', include('task.urls')),
+    path('', include('home.urls')), 👈 new
+]
+```
 
-> `home/templates/home/index.html`
-> 
-> ```html
-> {% extends "_base.html" %}
-> 
-> {% block content %}
-> {% if user.is_authenticated %}
->     <h1>Coucou {{ user.first_name }}</h1>
-> {% else %}
->     <h1>Coucou toi !</h1>
-> {% endif %}
-> {% endblock content%}
-> ```
+Et enfin, ajoutez le fichier de configuration d'URL dans la nouvelle application.
 
-Relancez le serveur si vous l'avez arrêté et testé à nouveau. Si vous avec le message "Coucou toi" alors rendez-vous dans la page admin pour vous y connecter. Si vous avez comme message "Coucou \<votre prénom\>" alors rendez-vous sur la page admin pour vous déconnecter.
+<div class="path">home/urls.py</div>
 
-Remarquez que la variable de context `user` est automatiquement ajouté par Django dans tout affichage de gabarit.
+``` python
+from django.urls import path
 
-⭐️ Le lien "home" ( 🏠 ) ne fonctionne pas. Corrigez-le.
+from .views import HomeView
 
-#### Affichage des tâches
+urlpatterns = [
+    path('', HomeView.as_view(), name='home'),
+]
+```
 
-Modifiez le template afin d'afficher les tâches, le nom et le prénom de l'utilisateur connecté.
+Lancez le serveur et testez !
 
-Exemple de code
-> `home/template/home/index.html`
-> 
-> ``` html
-> #...
-> {% if user.is_authenticated %}
-> <div class="p-1 m-3 bg-light">
->     <h1>
->         {{ user.first_name }} {{ user.last_name }}
->     </h1>
-> </div>
-> 
-> <div class="container-sm">
->     {% if user.tasks.all|length %}
->         <ul class="list-group fluid">
->         {% for task in user.tasks.all %}
->             <li class="list-group-item">
->                 <strong>{{ task.title }}</strong>
->                 {{ task.description }}
->             </li>
->         {% endfor %}
->         </ul>
->     {% else %}
->         <alert class="alert alert-warning">No Tasks</alert>
->     {% endif %}
-> </div>
-> {% else %}
->     <h1>Coucou toi !</h1>
-> #...
-> ```
+### Personnalisation de l'accueil
+
+Actuellement, le message est assez impersonnel. Modifiez le gabarit afin qu'il corresponde au code ci-dessous.
+
+<div class="path"> home/templates/home/index.html</div>
+
+``` html
+{% extends "_base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>Bienvenue {{ user.first_name }}</h1>
+{% else %}
+    <h1>Bienvenue sur mproject</h1>
+{% endif %}
+{% endblock content%}
+```
+
+Relancez le serveur si vous l'avez arrêté et testé à nouveau. Si vous avec le message "Bienvenue sur mproject" alors rendez-vous dans la page admin pour vous y connecter en tant que super utilisateur. Si vous avez comme message "Coucou \<votre prénom\>" alors rendez-vous sur la page admin pour vous déconnecter.
+
+Remarquez que la variable de contexte `user` est automatiquement ajouté par Django dans tous les gabarits.
+
+⭐️ Le lien "home" ( 🏠 ) ne fonctionne pas. Corrigez-le et gérez l'effet "actif".
+
+### Affichage des tâches de l'utilisateur
+
+Modifiez le gabarit pour que le nom et prénom de l'utilisateur connecté soit affiché. Ajoutez également les tâches qui lui sont assignées.
+
+<div class="path">home/template/home/index.html</div>
+
+``` html
+#...
+
+{% if user.is_authenticated %}
+<div class="p-1 m-3 bg-light">
+    <h1>
+        {{ user.first_name }} {{ user.last_name }}
+    </h1>
+</div>
+
+<div class="container-sm">
+    {% if user.tasks.all|length %}
+        <ul class="list-group fluid">
+        {% for task in user.tasks.all %}
+            <li class="list-group-item">
+                <strong>{{ task.title }}</strong>
+                {{ task.description }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <alert class="alert alert-warning">No Tasks</alert>
+    {% endif %}
+</div>
+{% else %}
+    <h1>Bienvenue sur mproject</h1>
+
+#...
+```
 
 Ajoutez une tâche à votre utilisateur pour vérifier le bon fonctionnement. S'il y en avait déjà une, supprimez la.
 
-📃 Si vous avez été attentif jusqu'à maintenant, et si vous avez bien fait tout ce qui est demandé nous nous attendons à une question équivalente à celle-ci : "Je pensais que seuls les superutilisateurs peuvent se connecter. L'utilisateur que nous avions fait précédement ne peut pas ce connecter". En effet, seuls un utilisateur ("du staff") peut se connecter à notre page admin. Mais tout utilisateur peut se connecter à notre site. Dans les fait, c'est vrai si on lui en donne l'occasion. C'est ce que nous allons faire dans la prochaine section.
+📃 Si vous avez été attentif jusqu'à maintenant, et si vous avez bien fait tout ce qui est demandé il est légitime de se demander si seuls les super utilisateurs peuvent se connecter. En effet, un utilisateur développeur ne peut pas se connecter. Pour permettre à un utilisateur autre qu'un super utilisateur de se connecter à la page d'administration, celui-ci doit faire partie de "l'équipe" (testez en ajoutant la permission "statut équipe" dans le menu de modification d'un utilisateur). 
 
-#### Urls d'authentifications
+Dans la pratique, nous aimerions qu'un utilisateur normal puisse se connecter à notre site. C'est ce que nous allons faire dans la prochaine section.
 
-##### Connection
+## URLs d'authentifications
 
-La première chose à faire est de définir les urls qui vont mener aux vues d'authentification.
+### Connexion
 
-> `mproject/urls.py`
-> ``` python
-> 
-> urlpatterns = [
->     path('', include('home.urls')),
->     path('admin/', admin.site.urls),
->     path('accounts/', include('django.contrib.auth.urls')), 👈 new
->     path('developer/', include('developer.urls')),
->     path('task/', include('task.urls')),
-> ```
+La première chose à faire est de définir les URLs qui vont mener aux vues d'authentification. Celles-ci sont déjà définies dans l'application `django.contrib.auth`.
 
-Et ajoutez un lien pour se connecter.
+<div class="path">mproject/settings.py</div>
 
-> `templates/home/index.html`
-> 
-> ```html
-> {% else %}
->     <h1>Coucou toi !</h1>
->     <a href={% url 'login' %}>Log in</a> 👈 new
-> {% endif %}
-> ```
+``` python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',  👈 installée ici
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+```
 
-📃 L'url "login" fait partie des urls inclue à l'étape précédente.
+Définissons les urls : 
 
-🐇 Cliquez pour vous connecter ! Et prenez 5 minutes pour lire l'erreur obtenue.
-Cette erreur est simple, le template permettant de se connecter n'a pas été trouvé. Django s'attend en effet à le trouver dans le répertoir `registration` et celui-ci doit s'appeler `login.html`.
+<div class="path">mproject/urls.py</div>
+
+``` python
+urlpatterns = [
+    path('', include('home.urls')),
+    path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')), 👈 new
+    path('developer/', include('developer.urls')),
+    path('task/', include('task.urls')),
+```
+
+Et ajoutez un lien pour permettre la connexion.
+
+<div class="path">home/templates/home/index.html</div>
+
+```html
+{% else %}
+    <h1>Bienvenue sur mproject</h1>
+    <a href={% url 'login' %}>Log in</a>    👈 new
+{% endif %}
+```
+
+📃 L'url "login" fait partie des URLs inclues à l'étape précédente.
+
+🐇 Cliquez pour vous connecter ! Et prenez le temps de lire l'erreur obtenue.
+
+Cette erreur est simple, le gabarit qui doit permettre de se connecter n'a pas été trouvé. Django s'attend en effet à le trouver dans le répertoire `registration` et celui-ci doit s'appeler `login.html`.
 
 Ajoutez donc le fichier suivant dans le dossier `templates` de votre projet avec l'arborescence attendue.
 
-> `registration/login.html`
-> 
-> ```html
-> {% extends "_base.html" %}
-> {% load crispy_forms_tags %}
-> {% block title %}GProject - login{% endblock title %}
-> 
-> {% block content %}
-> <div class="container-sm p-3 mt-2 bg-light text-primary">
-> <h2>Log in</h2>
-> <form method="post">
->     {% csrf_token %}
->     {{ form|crispy }}
->     <button type="submit" class="btn btn-dark">Log in</button>
-> </form>
-> </div>
-> {% endblock content %}
-> ```
+<div class="path">mproject/templatesregistration/login.html</div>
+
+```html
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}GProject - login{% endblock title %}
+
+{% block content %}
+<div class="container-sm p-3 mt-2 bg-light text-primary">
+<h2>Log in</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-dark">Log in</button>
+</form>
+</div>
+{% endblock content %}
+```
 (Ce gabarit devrait vous sembler naturel maintenant.)
 
 Essayez à nouveau de vous connecter avec les identifiants d'un développeur créé dans votre projet (en dehors de la page admin) et pour lequel vous avez défini un mot de passe ⭐️.
 
-Une nouvelle fois, vous rencontrez une page d'erreur. Moins évidente cette fois. Pas de panique toutefois ! Après vous êtes connecté, Django cherche une page de profil qui n'existe pas. Et nous n'allons pas la créé ! Plutôt que de faire cela, nous allons rediriger l'utilisateur qui s'est connecté vers la page d'accueil de notre site.
+Une nouvelle fois, vous rencontrez une page d'erreur. Moins évidente cette fois. Pas de panique toutefois ! Après vous êtes connecté, Django cherche à rediriger vers une page de profil qui n'existe pas. Et nous n'allons pas la crée ! Plutôt que de faire cela, nous allons rediriger l'utilisateur qui s'est connecté vers la page d'accueil de notre site.
 
 Dans le fichier `settings.py`, ajoutez cette ligne à la fin.
 
-`LOGIN_REDIRECT_URL = 'home'`
+<div class="path">mproject/settings.py</div>
+
+``` python
+# ...
+
+# AUHT CONFIGURATION
+AUTH_USER_MODEL = 'developer.Developer'
+LOGIN_REDIRECT_URL = 'home'             👈 new
+```
 
 ⭐️ Essayez et profitez 😉
 
-##### Déconnexion
+### Déconnexion
 
-Nous allons gérer la déconnection maintenant, rassurez vous, le plus dur est fait. Pour cela nous devons
+Nous allons gérer la déconnexion maintenant, rassurez-vous, le plus dur est fait. Pour cela nous devons
 
 1. Ajouter un lien pour nous déconnecter
 2. Rediriger l'utilisateur vers la page d'accueil.
 
-> `templates/home/index.html`
-> 
-> ``` html
-> {% if user.is_authenticated %}
-> <div class="p-1 m-3 bg-light">
->     <p class="float-right"><a href={% url 'logout' %}><i class="fa fa-sign-out"></i></a></p> 👈 new
->     <h1>
->         {{ user.first_name }} {{ user.last_name }}
->     </h1>
-> </div>
-> ```
+<div class="path">home/templates/home/index.html</div>
 
-Et on redirige en ajoutant cette variable à notre fichier `settings.py` :
-
-```python
-LOGOUT_REDIRECT_URL = 'home'
+``` html
+{% if user.is_authenticated %}
+<div class="p-1 m-3 bg-light">
+    <p class="float-right"><a href={% url 'logout' %}><i class="fa fa-sign-out"></i></a></p>👈 new
+    <h1>
+        {{ user.first_name }} {{ user.last_name }}
+    </h1>
+</div>
 ```
 
-⭐️ Testez !
+Et on redirige vers notre page d'accueil en ajoutant la constante `LOGOUT_REDIRECT_URL` à notre fichier `settings.py` :
+
+<div class="path">mproject/settings.py</div>
+
+```python
+#... 
+
+# AUHT CONFIGURATION
+AUTH_USER_MODEL = 'developer.Developer'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'            👈 new
+```
+
+La déconnexion est maintenant implémentée !
