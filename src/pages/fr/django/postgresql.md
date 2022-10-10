@@ -8,12 +8,15 @@ Et si nous changions le SGBD afin d'utiliser PostgreSQL ?
 
 ## Installation
 
-1. Installer [postgresql](https://www.postgresql.org/)
+1. Installer [PostgreSQL](https://www.postgresql.org/)
 2. Créer une DB (par exemple `mproject`) : `CREATE DATABASE mproject;`
-3. Créer un rôle (dans psql): `create role <le rôle> login password '<le mdp>';`
-4. Donner les droits nécessaires à ce nouveau rôle (dans psql): `grant all privileges on database mproject to <le rôle>;`
+3. Créer un rôle (dans `psql`): `create role <le rôle> login password '<le mdp>';`
+4. Donner les droits nécessaires à ce nouveau rôle (dans `psql`) : `grant all privileges on database mproject to <le rôle>;`
 5. Installer `psycopg2`: `python -m pip install django psycopg2`.
-6. Configurer l'utilisation de la db dans `settings.py`
+6. Configurer l'utilisation de la base de données dans `settings.py`
+
+   <div class="path">mproject/settings.py</div>
+
    ``` python
    #'default': {
     #    'ENGINE': 'django.db.backends.sqlite3',
@@ -60,13 +63,13 @@ Please select a fix:
 Select an option: 
 ```
 
-La raison est simple. Des données sont potentiellement présentes dans la db et nous ne pouvons pas supposer qu'il n'y en a pas (imaginez s'il y a plusieurs instances du site). Django vous demande donc ce que vous voulez faire pour le champ `username` puisque celui-ci s'ajoute aux enregistrements présents et que celui-ci est obligatoire.
+La raison est simple. Des données sont potentiellement présentes dans la base de données et nous ne pouvons pas supposer qu'il n'y en a pas (imaginez s'il y a plusieurs instances du site). Django vous demande donc ce que vous voulez faire pour le champ `username` puisque celui-ci s'ajoute aux enregistrements présents et que celui-ci est obligatoire.
 
 La procédure que nous allons vous soumettre est un peu radicale, mais nous sommes aux prémices du développement de notre projet. C'est donc satisfaisant comme cela !
 
-1. Réinitialiser la db.
-   * Si vous utilisez toujours sqlite, alors supprimez le fichier `db.sqlite3` (ou mieux, faite la configuration nécessaire à l'utilisation de Postgresql).
-   * Si vous utilisez postgresql comme demandé, nous allons plutôt défaire toutes les migrations réalisées. Lancez la commande : `$ python manage.py migrate developer zero`.
+1. Réinitialiser la base de données.
+   * Si vous utilisez toujours SQLite, alors supprimez le fichier `db.sqlite3` (ou mieux, faite la configuration nécessaire à l'utilisation de PostgreSQL).
+   * Si vous utilisez PostgreSQL comme demandé, nous allons plutôt défaire toutes les migrations réalisées. Lancez la commande : `$ python manage.py migrate developer zero`.
 2. Supprimez les fichiers présents dans le dossier `migrations`. Ceux-ci ont généralement la forme : `0001_...`
 3. Relancez la procédure complète de migration
    1. `python manage.py makemigrations`
@@ -74,4 +77,4 @@ La procédure que nous allons vous soumettre est un peu radicale, mais nous somm
 
 Pour vous entraîner, supprimez le champ `user_name` que vous venez de créer, cela va nous gêner par la suite et cela vous permet de vous entraîner avec la procédure ! ⭐️
 
-📃 Certains diront qu'il est également possible de supprimer la db et de la recréer. Ceux-ci n'ont pas tort, mais pensez à supprimer les fichiers de migration malgré tout !
+📃 Certains diront qu'il est également possible de supprimer la base de donnée et de la recréer. Ceux-ci n'ont pas tort, mais pensez à supprimer les fichiers de migration malgré tout !

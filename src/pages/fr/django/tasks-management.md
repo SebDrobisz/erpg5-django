@@ -75,7 +75,7 @@ Après l'ajout d'une tâche, l'application redirige vers l'index des tâches.
 ### Dans le détail d'un développeur
 
 ⭐️ Ajoutez la possibilité de créer une tâche dans la vue détail d'un développeur. Lorsqu'une tâche sera créée, l'utilisateur sera redirigé vers l'index des tâches. Ce n'est pas optimal, mais nous ferons avec.
-* Il serait agréable que le formulaire soit prérempli au niveau du développeur assigné. Lors de l'ajout du formulaire dans le contexte de la page détail d'un développeur, ajoutez une valeur initiale pour le champ `assignee` du formulaire ([exemple](https://docs.djangoproject.com/en/4.1/ref/forms/api/#initial-form-values)).
+* Il serait agréable que le formulaire soit prérempli au niveau du développeur assigné. Lors de l'ajout du formulaire dans le contexte de la page détail d'un développeur, ajoutez une valeur initiale pour le champ `assignee` du formulaire envoyé par la vue ([exemple](https://docs.djangoproject.com/en/4.1/ref/forms/api/#initial-form-values)).
 * Il serait aussi bien de ne pas exposer l'utilisateur à une erreur possible. Désactivez le champ pour que celui-ci ne soit pas modifiable. Attention, un champ désactivé n'est pas envoyé dans les données `POST`.
    Aide : 
 

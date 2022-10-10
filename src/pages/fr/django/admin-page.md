@@ -141,6 +141,6 @@ class TaskAdmin(admin.ModelAdmin):
 ```
 
 Voici un peu de lecture
-* [Tutoriel admin](https://docs.djangoproject.com/fr/3.1/intro/tutorial07/) 😎
-* [Doc admin](https://docs.djangoproject.com/fr/3.1/ref/contrib/admin/) 😎
-* [Action admin](https://docs.djangoproject.com/fr/3.0/ref/contrib/admin/actions/) 😎
+* [Tutoriel admin](https://docs.djangoproject.com/fr/3.1/intro/tutorial07/) 📖
+* [Doc admin](https://docs.djangoproject.com/fr/3.1/ref/contrib/admin/) 📖
+* [Action admin](https://docs.djangoproject.com/fr/3.0/ref/contrib/admin/actions/) 📖

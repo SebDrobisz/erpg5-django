@@ -86,26 +86,26 @@ Modifier maintenant le code du gabarit `detail.html`
 
 Ainsi que le fichier `index.html`
 
-> `developer/index.html`
->
-> ``` html
-> {% extends "_base.html" %}
-> 
-> {% block title %} Liste des dévelopeurs {% endblock title %}
-> 
-> {% block content %}
->  {% if developers %}
->  <ul>
->      {% for dev in developers %}
->      {#<li>{{ dev.first_name }}</li>#}
->      <li><a href="{% url 'developer:detail' dev.id %}"> {{ dev.first_name }}</a></li>
->      {% endfor %}
->  </ul>
->  {% else %}
->      <p><strong>Il n'y a aucune dévelopeur enregistré !</strong></p>
->  {% endif %}
-> {% endblock content %}
-> ```
+<div class="path">developer/index.html</div>
+
+``` html
+{% extends "_base.html" %}
+
+{% block title %} Liste des dévelopeurs {% endblock title %}
+
+{% block content %}
+ {% if developers %}
+ <ul>
+     {% for dev in developers %}
+     {#<li>{{ dev.first_name }}</li>#}
+     <li><a href="{% url 'developer:detail' dev.id %}"> {{ dev.first_name }}</a></li>
+     {% endfor %}
+ </ul>
+ {% else %}
+     <p><strong>Il n'y a aucune dévelopeur enregistré !</strong></p>
+ {% endif %}
+{% endblock content %}
+```
 
 Les gabarits ont été modifiés afin que les morceaux de code soient placés correctement au sein des blocs `title` et `content` défini dans le gabarit de base. Nous avons ajouté la balise `{% extends '_base.html' %}` dans les gabarits `detail.html`et `index.html` afin qu'ils héritent du gabarit de base.
 
@@ -168,6 +168,4 @@ et ajoutons un menu
 
 Nous n'avons pas ajouté de fonctionnalité, mais notre site est maintenant un peu plus habillé. Passez de la vue `detail` à la vue `index` et profiter du site mis en style.
 
-> Question ⭐️
-> 
-> Quel bout de code permet de revenir à la liste des développeurs lorsque je clique sur le menu `Developers` ?
+⭐️ Quel bout de code permet de revenir à la liste des développeurs lorsque je clique sur le menu `Developers` ?

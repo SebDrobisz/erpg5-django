@@ -40,7 +40,7 @@ Pour procéder à l'installation, nous vous conseillons
 
 ## Légende
 
-Il s'agit d'un cours avant tout, parfois vous verrez différents émoji. Ceux-ci permettent d’attirer votre attention de différentes manières.
+Il s'agit d'un cours avant tout, parfois vous verrez différents émojis. Ceux-ci permettent d’attirer votre attention de différentes manières.
 
 |Emoji|Signification|
 |---|---|
@@ -52,7 +52,7 @@ Il s'agit d'un cours avant tout, parfois vous verrez différents émoji. Ceux-ci
 | ⚠️ | Source d'erreur |
 | 📖 | Lecture supplémentaire optionnelle, mais vivement recommandé |
 | 📃 | Note un peu plus personnelle |
-| 💩 | Élément à ne pas reproduire |
+| 💩 | À ne pas faire reproduire |
 
 ## Conventions
 

@@ -35,7 +35,7 @@ DATABASES = {
 
 > **Parenthèse Python 🐍**
 > 
-> DATABASES est initialisé avec un dictionnaire. Dans ce dictionnaire, il n'y a qu'un seul élément dont la clé est 'default" et la valeur est un autre dictionnaire.
+> `DATABASES` est initialisé avec un dictionnaire. Dans ce dictionnaire, il n'y a qu'un seul élément dont la clé est 'default" et la valeur est un autre dictionnaire.
 > La valeur de `default` est donc un dictionnaire contenant deux valeurs.
 > Notons ici que `BASE_DIR` est un objet de type `path`. L'opérateur `/` permet de concaténer un chemin.
 
@@ -78,7 +78,7 @@ class Task(models.Model):
 * Chaque champ est représenté par une instance d’une classe `Field` – par exemple, `CharField` pour les champs de type caractère, et `DateTimeField` pour les champs date et heure. Cela indique à Django le type de données que contient chaque champ.
 * Le nom de chaque instance de `Field` (par exemple, `first_name` ou `title`) est le nom du champ en interne. Vous l’utiliserez dans votre code Python et votre base de données l’utilisera comme nom de colonne.
 * Vous pouvez utiliser le premier paramètre de position (facultatif) d’un `Field`  pour donner un nom plus lisible au champ. C’est utilisé par le système d’introspection de Django, et aussi pour la documentation. Si ce paramètre est absent, Django utilisera le nom du champ interne. Dans l’exemple, nous n’avons défini qu’un seul nom, pour `first_name` (en réalité, le nom donné automatiquement par Django est le même... 🙄). Parfois, le premier champ est pris par un autre paramètre. Dans ce cas, il est malgré tout possible d'assigner une valeur grâce à `verbose_name`(voir `assignee`).
-* Certaines classes Field possèdent des paramètres obligatoires. La classe `CharField`, par exemple, a besoin d’un attribut `max_length`. Ce n’est pas seulement utilisé dans le schéma de base de la base de données, mais également pour valider les champs, comme nous allons voir prochainement.
+* Certaines classes `Field` possèdent des paramètres obligatoires. La classe `CharField`, par exemple, a besoin d’un attribut `max_length`. Ce n’est pas seulement utilisé dans le schéma de base de la base de données, mais également pour valider les champs, comme nous allons voir prochainement.
 * Finalement, notez que nous définissons une association, en utilisant `ForeignKey` (plusieurs-à-un). Cela indique à Django que chaque tâche (Task) n’est reliée qu’à un seul développeur. Django propose tous les modèles classiques d'association : 
   * plusieurs-à-un,
   * plusieurs-à-plusieurs,
@@ -112,7 +112,7 @@ No changes detected
 
 Rien ne s'est passé, en réalité, il faut d'abord "installer" l'application developer.
 
-##### Installation de l'application developer
+##### Installation de l'application `developer`
 
 Pour inclure l’application dans notre projet, nous avons besoin d’ajouter une référence à sa classe de configuration dans le réglage `INSTALLED_APPS` présent dans le fichier `settings.py`. La classe `DeveloperConfig` se trouve dans le fichier `developer/apps.py`, ce qui signifie que son chemin pointé est `developer.apps.DeveloperConfig`. Modifiez le fichier `mproject/settings.py` et ajoutez ce chemin pointé au réglage `INSTALLED_APPS`. Il doit ressembler à ceci :
 
@@ -131,7 +131,7 @@ INSTALLED_APPS = [
     'developer.apps.DeveloperConfig', #👈 new
 ```
 
-##### Commande makemigrations
+##### Commande `makemigrations`
 
 Maintenant que c'est fait, nous pouvons relancer la commande `python manage.py makemigrations`.
 
@@ -248,40 +248,40 @@ On obtient un _QuerySet_ en utilisant le _Manager_ du modèle. Chaque modèle a 
 * [QuerySet](https://docs.djangoproject.com/fr/4.1/ref/models/querysets/#django.db.models.query.QuerySet) 📖
 * [Manager](https://docs.djangoproject.com/fr/4.1/topics/db/managers/#django.db.models.Manager) 📖
 
-Ici, le QuerySet est vide puisque aucun élément n'a été créé.
+Ici, le QuerySet est vide puisqu'aucun élément n'a été créé.
 
-> ``` python
-> >>> jlc = Developer(first_name='Jonahtan', last_name='Lechien')
-> ```
+``` python
+>>> jlc = Developer(first_name='Jonahtan', last_name='Lechien')
+```
 
 Nous venons de créer un nouveau développeur. Vérifiez que celui-ci a bien été créé dans la base de donnée ! 🐇⭐️
 
-Vous vous êtes peut-être fait avoir. Quoiqu'il en soit, vous avez pu vérifier qu'il n'y a aucun nouvel enregistrement. Il est nécessaire de le sauvegarder pour que celui-ci soit enregistré en base de donnée..
+Vous vous êtes peut-être fait avoir. Quoiqu'il en soit, vous avez pu vérifier qu'il n'y a aucun nouvel enregistrement. Il est nécessaire de le sauvegarder pour que celui-ci soit enregistré en base de donnée...
 
-> ``` python
-> >>> jlc.save()
-> ```
+``` python
+>>> jlc.save()
+```
 
 Il est possible de créer un nouvel enregistrement en passant par un manager, il n'est alors pas nécessaire de le sauvegarder. Essayez ! ⭐️
 
-> ``` python
-> >>> sdr = Developer.objects.create(first_name='Sébastien', last_name='Drobisz')
-> ```
+``` python
+>>> sdr = Developer.objects.create(first_name='Sébastien', last_name='Drobisz')
+```
 
 Continuons d'explorer
 
-> ``` python
-> >>> jlc.id
-> 1
-> >>> jlc.first_name
-> 'Jonahtan'
-> >>> jlc.last_name
-> 'Lechien'
-> >>> jlc.first_name = 'Jonathan' 
-> >>> jlc.save()
-> >>> Developer.objects.all()
-> <QuerySet [<Developer: Developer object (1)>, <Developer: Developer object (2)>]>
-> ```
+``` python
+>>> jlc.id
+1
+>>> jlc.first_name
+'Jonahtan'
+>>> jlc.last_name
+'Lechien'
+>>> jlc.first_name = 'Jonathan' 
+>>> jlc.save()
+>>> Developer.objects.all()
+<QuerySet [<Developer: Developer object (1)>, <Developer: Developer object (2)>]>
+```
 
 Une seconde. `<Developer: Developer object (1)>` n’est pas une représentation très utile de cet objet. On va arranger cela en éditant le modèle `Developer` (dans le fichier developer/models.py) et en ajoutant une méthode `__str__()` à `Developer` et à `Task`:
 
@@ -312,41 +312,41 @@ class Task(models.Model):
 
 Vous pouvez **relancer** le shell maintenant.
 
-> ```python
-> >>> Developer.objects.all()
-> <QuerySet [<Developer: Jonahtan Lechien>, <Developer: Sébastien Drobisz>]>
-> ```
+```python
+>>> Developer.objects.all()
+<QuerySet [<Developer: Jonahtan Lechien>, <Developer: Sébastien Drobisz>]>
+```
 
 Continuons sur notre lancée
 
-> ```python
-> >>> Developer.objects.filter(id=1)
-> <QuerySet [<Developer: Jonahtan Lechien>]>
-> >>> Developer.objects.filter(first_name__startswith='S')
-> <QuerySet [<Developer: Sébastien Drobisz>]>
-> >>> Developer.objects.get(pk=1)
-> <Developer: Jonahtan Lechien>
-> >>> faire_cours_django = Task.objects.create(title='cours django', description='Faire le cours de django (avec un peu de python)')
-> >>> faire_cours_django.assignee = sdr 
-> >>> faire_cours_django.save()
-> >>> jlc.tasks.create(title='cours Odoo', description='Faire le cours sur Odoo')
-> ```
+```python
+>>> Developer.objects.filter(id=1)
+<QuerySet [<Developer: Jonahtan Lechien>]>
+>>> Developer.objects.filter(first_name__startswith='S')
+<QuerySet [<Developer: Sébastien Drobisz>]>
+>>> Developer.objects.get(pk=1)
+<Developer: Jonahtan Lechien>
+>>> faire_cours_django = Task.objects.create(title='cours django', description='Faire le cours de django (avec un peu de python)')
+>>> faire_cours_django.assignee = sdr 
+>>> faire_cours_django.save()
+>>> jlc.tasks.create(title='cours Odoo', description='Faire le cours sur Odoo')
+```
 
 Si vous avez lu le tuto [ici](https://docs.djangoproject.com/fr/4.1/intro/tutorial02/) vous avez pu remarquer que nous utilisons `tasks` plutôt que `task_set`. Cela nous est possible puisque nous avons défini le paramètre `relative_name` dans notre modèle `Task`.
 
-> ```python
-> >>> jlc.tasks.all()   
-> <QuerySet [<Task: cours Odoo (Faire le cours sur Odoo)>]>
-> >>> jlc_task = jlc.tasks.all()[0] 
-> >>> jlc_task.title
-> 'cours Odoo'
-> >>> jlc.tasks.count()
-> 1
-> >>> jlc_task.delete()
-> (1, {'developer.Task': 1})
-> >>> jlc.tasks.count() 
-> 0
-> ```
+```python
+>>> jlc.tasks.all()   
+<QuerySet [<Task: cours Odoo (Faire le cours sur Odoo)>]>
+>>> jlc_task = jlc.tasks.all()[0] 
+>>> jlc_task.title
+'cours Odoo'
+>>> jlc.tasks.count()
+1
+>>> jlc_task.delete()
+(1, {'developer.Task': 1})
+>>> jlc.tasks.count() 
+0
+```
 
 ##### Toujours plus d'information 📖 :
 

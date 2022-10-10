@@ -102,7 +102,7 @@ urlpatterns = [
 ]
 ```
 
-L’idée derrière `include()` est de faciliter la connexion d’URL. Comme l’application de développeur possède son propre URLconf (`developer/urls.py`), ses URL peuvent être injectées sous « /developer/ », sous « /dev/ » ou sous « /content/dev/ » ou tout autre chemin racine sans que cela change quoi que ce soit au fonctionnement de l’application.
+L’idée derrière `include()` est de faciliter la connexion d’URL. Comme l’application de développeur possède son propre URLconf (`developer/urls.py`), ses URL peuvent être injectées sous `/developer/`, sous `/dev/` ou `sous `/content/dev/` ou tout autre chemin racine sans que cela change quoi que ce soit au fonctionnement de l’application.
 
 Vous avez maintenant relié une vue index dans la configuration d’URL. Vérifiez qu’elle fonctionne avec la commande suivante :
 
@@ -118,9 +118,9 @@ La fonction `path()` reçoit quatre paramètres, dont deux sont obligatoires : *
 
 #### `route`
 
-**route** est une chaîne contenant un motif d’URL. Lorsqu’il traite une requête, Django commence par le premier motif dans urlpatterns puis continue de parcourir la liste en comparant l’URL reçue avec chaque motif jusqu’à ce qu’il en trouve un qui correspond.
+**route** est une chaîne contenant un motif d’URL. Lorsqu’il traite une requête, Django commence par le premier motif dans `urlpatterns` puis continue de parcourir la liste en comparant l’URL reçue avec chaque motif jusqu’à ce qu’il en trouve un qui correspond.
 
-Les motifs ne cherchent pas dans les paramètres GET et POST, ni dans le nom de domaine. Par exemple, dans une requête vers https://www.example.com/myapp/, l’URLconf va chercher myapp/. Dans une requête vers https://www.example.com/myapp/?page=3, l’URLconf va aussi chercher myapp/.
+Les motifs ne cherchent pas dans les paramètres GET et POST, ni dans le nom de domaine. Par exemple, dans une requête vers https://www.example.com/myapp/, l’URLconf va chercher `myapp/`. Dans une requête vers https://www.example.com/myapp/?page=3, l’URLconf va aussi chercher `myapp/`.
 
 #### `view`
 
