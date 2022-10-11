@@ -29,7 +29,7 @@ class HomeView(TemplateView):
     template_name = "home/index.html"
 ```
 
-📃 `TemplateView` est une vue très basique qui a pour seul but d'afficher un gabarit donné.
+> 📃 `TemplateView` est une vue très basique qui a pour seul but d'afficher un gabarit donné.
 
 Ajoutez le gabarit associé à cette vue
 
@@ -134,7 +134,7 @@ Modifiez le gabarit pour que le nom et prénom de l'utilisateur connecté soit a
 
 Ajoutez une tâche à votre utilisateur pour vérifier le bon fonctionnement. S'il y en avait déjà une, supprimez la.
 
-📃 Si vous avez été attentif jusqu'à maintenant, et si vous avez bien fait tout ce qui est demandé il est légitime de se demander si seuls les super utilisateurs peuvent se connecter. En effet, un utilisateur développeur ne peut pas se connecter. Pour permettre à un utilisateur autre qu'un super utilisateur de se connecter à la page d'administration, celui-ci doit faire partie de "l'équipe" (testez en ajoutant la permission "statut équipe" dans le menu de modification d'un utilisateur). 
+> 📃 Si vous avez été attentif jusqu'à maintenant, et si vous avez bien fait tout ce qui est demandé il est légitime de se demander si seuls les super utilisateurs peuvent se connecter. En effet, un utilisateur développeur ne peut pas se connecter. Pour permettre à un utilisateur autre qu'un super utilisateur de se connecter à la page d'administration, celui-ci doit faire partie de "l'équipe" (testez en ajoutant la permission "statut équipe" dans le menu de modification d'un utilisateur). 
 
 Dans la pratique, nous aimerions qu'un utilisateur normal puisse se connecter à notre site. C'est ce que nous allons faire dans la prochaine section.
 

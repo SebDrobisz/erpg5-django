@@ -39,7 +39,7 @@ Le paramètre `TEMPLATES` de votre projet indique comment Django va charger et p
 Dans le répertoire `templates` que vous venez de créer, créez un autre répertoire nommé `developer` dans lequel vous placez un nouveau fichier `index.html`. Autrement dit, le chemin de votre gabarit doit être `developer/templates/developer/index.html`. Conformément au fonctionnement du chargeur de gabarit `app_directories` (cf. explication ci-dessus), vous pouvez désigner ce gabarit dans Django par `developer/index.html`.
 
 
-> **Espace de noms des gabarits** ⚠️
+> *_Gabarits : espace de nom_* 
 >
 > Il serait aussi possible de placer directement nos gabarits dans `developer/templates` (plutôt que dans un sous-répertoire `developer`), mais ce serait une mauvaise idée. Django choisit le premier gabarit qu’il trouve pour un nom donné et dans le cas où vous avez un gabarit de même nom dans une autre application, Django ne fera pas la différence. Il faut pouvoir indiquer à Django le bon gabarit, et la meilleure manière de faire cela est d’utiliser des espaces de noms. C’est-à-dire que nous plaçons ces gabarits dans un autre répertoire portant le nom de l’application.
 
@@ -97,7 +97,7 @@ Chargez la page en appelant l’URL « `/developer/` » dans votre navigateur et
 
 ![dev](/django-tutorials/dev_page_01.png)
 
-> **Exercices** ⭐️ 
+> *_Exercices ⭐️_*
 > 
 > * Supprimez chacun des développeurs et vérifiez que le message "II n'y a aucun développeur enregistré !" soit bien affiché. 
 > * Rajoutez ensuite au moins deux développeurs.

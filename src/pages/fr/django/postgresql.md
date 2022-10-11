@@ -70,11 +70,13 @@ La procédure que nous allons vous soumettre est un peu radicale, mais nous somm
 1. Réinitialiser la base de données.
    * Si vous utilisez toujours SQLite, alors supprimez le fichier `db.sqlite3` (ou mieux, faite la configuration nécessaire à l'utilisation de PostgreSQL).
    * Si vous utilisez PostgreSQL comme demandé, nous allons plutôt défaire toutes les migrations réalisées. Lancez la commande : `$ python manage.py migrate developer zero`.
-2. Supprimez les fichiers présents dans le dossier `migrations`. Ceux-ci ont généralement la forme : `0001_...`
-3. Relancez la procédure complète de migration
+
+1. Supprimez les fichiers présents dans le dossier `migrations`. Ceux-ci ont généralement la forme : `0001_...`
+
+1. Relancez la procédure complète de migration
    1. `python manage.py makemigrations`
-   2. `python manage.py migrate`
+   1. `python manage.py migrate`
 
 Pour vous entraîner, supprimez le champ `user_name` que vous venez de créer, cela va nous gêner par la suite et cela vous permet de vous entraîner avec la procédure ! ⭐️
 
-📃 Certains diront qu'il est également possible de supprimer la base de donnée et de la recréer. Ceux-ci n'ont pas tort, mais pensez à supprimer les fichiers de migration malgré tout !
+> 📃 Il est également possible de supprimer la base de donnée et d'en créer une nouvelle. Si vous faites cela, pensez à supprimer les fichiers de migration ! (⚠️ À ne pas faire en production.)

@@ -47,6 +47,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):      👈 ajout de LoginR
 Remarques :
 
 * Si l'utilisateur n'est pas connecté, il sera redirigé automatiquement vers la page de login.
+
 * On place le mixin `LoginRequiredMixin` **avant** les autres mixins. En effet, les mixins sont chargés dans l'ordre donné. Si l'utilisateur n'est pas connecté, il est inutile de charger les autres mixins.
 
 ## Permissions de gestion des tâches
@@ -98,14 +99,14 @@ class IndexView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView): 
 
 Notez qu'il est nécessaire d'ajouter le champ `permission_required` avec la permission demandée.
 
-📃 Encore une fois, prêtez une attention particulière à l'ordre de vos mixins !
+> 📃 Encore une fois, faites attention à l'ordre de vos mixins !
 
-⚠️ Attention, il est nécessaire de faire une migration du modèle.
+> ⚠️ Attention, il est nécessaire de faire une migration du modèle.
 
 Créez un utilisateur (non super utilisateur). Ajoutez un mot de passe et accordez-lui cette permission.
 Créez un autre utilisateur (non super utilisateur). Ne lui accordez pas cette permission.
 
-Vérifiez le bon fonctionnement de votre projet.
+> Vérifiez le bon fonctionnement de votre projet.
 
 ### Permission pour le modal d'ajout de tâches
 

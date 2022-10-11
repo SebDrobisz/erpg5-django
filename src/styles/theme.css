@@ -68,7 +68,8 @@
 	--theme-text-lighter: hsla(var(--color-gray-80), 1);
 	--theme-bg: hsla(var(--color-base-white), 100%, 1);
 	--theme-bg-hover: hsla(var(--color-gray-95), 1);
-	--theme-bg-offset: hsla(var(--color-gray-90), 1);
+	/* --theme-bg-offset: hsla(var(--color-gray-90), 1); */
+	--theme-bg-offset: var(--theme-bg-accent);
 	--theme-bg-accent: hsla(var(--color-blue), var(--theme-accent-opacity));
 	--theme-code-inline-bg: hsla(var(--color-gray-95), 1);
 	--theme-code-inline-text: var(--theme-text);
@@ -98,7 +99,8 @@ body {
 	--theme-text-lighter: hsla(var(--color-gray-40), 1);
 	--theme-bg: hsla(215, 28%, 17%, 1);
 	--theme-bg-hover: hsla(var(--color-gray-40), 1);
-	--theme-bg-offset: hsla(var(--color-gray-5), 1);
+	/* --theme-bg-offset: hsla(var(--color-gray-5), 1); */
+	--theme-bg-offset: var(--theme-bg-accent);
 	--theme-code-inline-bg: hsla(var(--color-gray-10), 1);
 	--theme-code-inline-text: hsla(var(--color-base-white), 100%, 1);
 	--theme-code-bg: hsla(var(--color-gray-5), 1);
@@ -145,4 +147,20 @@ article img {
 
 .nav-group h2 {
 	font-size: 1.2rem;
+}
+
+blockquote {
+	border-radius: 50%;
+}
+
+p > code {
+	margin: 0 0.2rem;
+}
+
+blockquote  em > em {
+	font-size: 1.2rem;
+	font-weight: bold;
+	font-style: normal;
+	margin-bottom: 1rem;
+	display: block;
 }

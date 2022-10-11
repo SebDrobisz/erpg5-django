@@ -28,7 +28,7 @@ Pour procéder à l'installation, nous vous conseillons
  * installer `pip` qui est un gestionnaire de package pour `python` ;
  * et d'ensuite lancer l'installation de Django avec la commande `python -m pip install Django`.
 
-> ### Mise en pratique au local 601
+> *_Mise en pratique au local 601_*
 >
 > Une version de python est installée sur chacune des machines. Il faut cependant installer pour votre utilisateur courant le module Django. Il vous suffit d'utiliser la commande d'installation suivante qui spécifie que le module doit être installé dans votre répertoire utilisateur : 
 >

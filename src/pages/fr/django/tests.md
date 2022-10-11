@@ -59,6 +59,7 @@ def test_is_free_with_one_tasks(self):
 Nous venons ici de créer une sous-classe de `django.test.TestCase` contenant 
 
 * une première méthode qui crée une instance `Developer` avec des données quelconques. Nous vérifions ensuite le résultat de `is_free()` qui devrait valoir `True`.
+
 * Une seconde méthode qui crée une même instance de `Developer`. Nous lui assignons cette fois-ci la tâche d'écrire le cours sur Django. Enfin, nous vérifions le résultat de la méthode `is_free()` qui devrait cette fois-ci valoir `False`.
 
 
@@ -169,7 +170,7 @@ class DeveloperIndexViewTests(TestCase):
 
 Dans le premier test, nous vérifions que la page existe bel et bien, qu'un message indiquant l'absence de développeur est affiché et que la variable `developer` du contexte est vide.
 
-📃 Les tests sont faits dans un ordre logique permettant de déterminer directement la source de l'erreur !
+> 📃 Les tests sont faits dans un ordre logique permettant de déterminer directement la source de l'erreur !
 
 Dans le second test, nous vérifions que le prénom du développeur est bien affiché.
 
@@ -201,25 +202,25 @@ Nous allons faire deux tests afin de vérifier la vue d'un développeur.
 
 ```python
 class DevDetailView(TestCase):
- def test_existing_developer(self):
-     """
-     The detail view of a developer displays the developer's text.
-     """
-     dev = Developer.objects.create(
-         first_name="Jonathan",
-         last_name="Lechien")
-     url = reverse('developer:detail', args=(dev.id,))
-     response = self.client.get(url)
-     self.assertEquals(response.status_code, 200)
-     self.assertEquals(response.context['developer'], dev)
-     self.assertContains(response, dev.first_name)
-     self.assertContains(response, dev.last_name)
+    def test_existing_developer(self):
+        """
+        The detail view of a developer displays the developer's text.
+        """
+        dev = Developer.objects.create(
+            first_name="Jonathan",
+            last_name="Lechien")
+        url = reverse('developer:detail', args=(dev.id,))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['developer'], dev)
+        self.assertContains(response, dev.first_name)
+        self.assertContains(response, dev.last_name)
 
- def test_non_existing_developer(self):
-     """
-     The detail view of a non existing developer should return 404 status_code response.
-     """
-     url = reverse('developer:detail', args=(1,))
-     response = self.client.get(url)
-     self.assertEquals(response.status_code, 404)
+    def test_non_existing_developer(self):
+        """
+        The detail view of a non existing developer should return 404 status_code response.
+        """
+        url = reverse('developer:detail', args=(1,))
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
 ```

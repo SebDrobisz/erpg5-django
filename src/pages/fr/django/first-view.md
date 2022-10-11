@@ -45,7 +45,7 @@ def index(request):
     return HttpResponse("Hello, world. You're at the developers index.")
 ```
 
-> **Parenthèse python 🐍**
+> *_Parenthèse python 🐍_*
 > Dans cette vue, nous découvrons plusieurs éléments python.
 >
 > * "`from django.http import HttpResponse`" permet d'importer la classe `HttpResponse` du _module_ `django.http`.
@@ -82,8 +82,7 @@ urlpatterns = [
 ]
 ```
 
-> **Parenthèse python 🐍**
-> 
+> *_Parenthèse python 🐍_*
 > 1. Nous importons la fonction `path` du module `django.url`.
 > 2. Nous importons les éléments de notre répertoire `views` (c'est-à-dire notre fonction vue `index` écrite précédemment).
 > 3. Nous assignons à la variable `urlpatterns` une `liste` de chemin (ici un seul chemin). Notez qu'en Python, il est de bonne pratique de toujours terminer par une virgule, même si la liste n'est constitué que d'un seul élément.

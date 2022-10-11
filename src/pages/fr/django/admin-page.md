@@ -44,6 +44,7 @@ Retournez sur la page administration et vérifiez l'ajout de l'administration de
 À noter ici :
 
 * Le formulaire est généré automatiquement à partir des modèles `Developer` et `Task`.
+
 * Les différents types de champs du modèle (`DateTimeField`, `CharField`) correspondent au composant graphique d’entrée HTML approprié. Chaque type de champ possède son propre [widget](https://docs.djangoproject.com/fr/4.1/ref/forms/widgets/) dans l’interface d’administration de Django.
 
 La partie inférieure de la page vous propose une série d’opérations :
@@ -53,7 +54,7 @@ La partie inférieure de la page vous propose une série d’opérations :
 * Enregistrer et ajouter un nouveau – Enregistre les modifications et charge un nouveau formulaire vierge pour ce type d’objet.
 * Supprimer – Affiche une page de confirmation de la suppression.
 
-Pensez à configurer votre projet en français. Cela se passe dans le fichier `settings.py`. Modifiez le champ `LANGUAGE_CODE = 'fr'`. Vous trouverez l'ensemble des langues supportées [ici](https://github.com/django/django/blob/master/django/conf/global_settings.py.
+> Vous pouvez configurer votre projet en français. Dans le fichier `settings.py`, modifiez le champ `LANGUAGE_CODE = 'fr'`. Vous trouverez l'ensemble des langues supportées [ici](https://github.com/django/django/blob/master/django/conf/global_settings.py).
 
 ## Configuration de la page admin.
 
@@ -125,7 +126,7 @@ class Developer(models.Model):
    is_free.short_description = 'Free' 👈new
 ```
 
-⚠️ Vous n'avez pas besoin de réaliser une migration pour cette étape. En effet, le fichier modèle a été modifié, mais aucun champ n'est impacté par les changements.
+> ⚠️ Vous n'avez pas besoin de réaliser une migration pour cette étape. En effet, le fichier modèle a été modifié, mais aucun champ n'est impacté par les changements.
 
 Nous avons modifié le minimum de la page d'administration, mais vous pouvez configurer davantage votre page d'administration. 
 En utilisant les décorateurs par exemple : 

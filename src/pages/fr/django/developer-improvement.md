@@ -105,9 +105,6 @@ Profitons-en pour afficher les tâches d'un développeur dans la vue détail.
 
 ## Suppression des développeurs
 
-⭐️ Exercice
------------
-
 Tout d'abord, ajoutez le code ci-dessous.
 
 <div class="path">developer/detail.html`</div>
@@ -127,8 +124,10 @@ Tout d'abord, ajoutez le code ci-dessous.
 
 Ce code a pour objectif d'ajouter une petite corbeille près du nom d'un développeur afin de permettre sa suppression.
 
-1. Inspirez-vous des vues existantes afin de permettre la suppression d'un développeur. Lors de la suppression, redirigez vers l'index des développeurs.
-2. Ajoutez l'url adéquate
-3. Testez
+> *_⭐️ Exercice_*
+> 
+> 1. Inspirez-vous des vues existantes afin de permettre la suppression d'un développeur. Lors de la suppression, redirigez vers l'index des développeurs.
+> 1. Ajoutez le chemin adéquat
+> 1. Testez
 
-Que se passe-t-il pour les tâches qui étaient assignées ? Amendez le code afin qu'une tâche assignée à un développeur ne soit plus supprimée.
+> Que se passe-t-il pour les tâches qui étaient assignées ? Amendez le code afin qu'une tâche assignée à un développeur ne soit plus supprimée.

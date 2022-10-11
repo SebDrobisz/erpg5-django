@@ -8,8 +8,7 @@ layout: ../../../layouts/MainLayout.astro
 
 Nous allons maintenant définir les modèles – essentiellement, le schéma de base de données, avec quelques métadonnées supplémentaires.
 
-> **Philosophie de django**
->
+> *_Philosophie de Django_*
 > Un modèle est la source d’information unique et définitive pour vos données. Il contient les champs essentiels et le comportement attendu des données que vous stockerez. Django respecte la philosophie DRY (**Don’t Repeat Yourself**, « ne vous répétez pas »). Le but est de définir le modèle des données à un seul endroit, et ensuite de dériver automatiquement ce qui est nécessaire à partir de celui-ci.
 >
 >Ceci inclut les migrations. En effet, les migrations sont entièrement dérivées du fichier des modèles et ne sont au fond qu’un historique que Django peut parcourir pour mettre à jour le schéma de la base de données pour qu’il corresponde aux modèles actuels.
@@ -33,13 +32,13 @@ DATABASES = {
 }
 ```
 
-> **Parenthèse Python 🐍**
+> *_Parenthèse Python 🐍_*
 > 
 > `DATABASES` est initialisé avec un dictionnaire. Dans ce dictionnaire, il n'y a qu'un seul élément dont la clé est 'default" et la valeur est un autre dictionnaire.
 > La valeur de `default` est donc un dictionnaire contenant deux valeurs.
 > Notons ici que `BASE_DIR` est un objet de type `path`. L'opérateur `/` permet de concaténer un chemin.
 
-> **Exercice Python** 🐍 ⭐️
+> *_Exercices Python 🐍 ⭐️_*
 >
 > Quelles sont les résultats cachés par des points d'interrogation des instructions suivantes ?
 >
@@ -302,7 +301,7 @@ class Task(models.Model):
         return f"{self.title} ({self.description})" 👈 new
 ```
 
-> Parenthèses python 🐍
+> *_Parenthèse python 🐍_*
 > 
 > * Vous l'aurez probablement compris, `__str__()` est à Python 🐍 ce que `toString()` est à Java ☕️.
 > * Pour formater du texte, on peut utiliser : 

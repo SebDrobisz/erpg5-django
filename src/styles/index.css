@@ -113,6 +113,7 @@ a {
 	text-underline-offset: 0.08em;
 	align-items: center;
 	gap: 0.5rem;
+	text-decoration: none;
 }
 
 article > section :is(ul, ol) > * + * {
@@ -271,9 +272,10 @@ blockquote code {
 blockquote {
 	margin: 2rem 0;
 	padding: 1.25em 1.5rem;
-	border-left: 3px solid var(--theme-text-light);
+	/* border-left: 3px solid var(--theme-text-light); */
 	background-color: var(--theme-bg-offset);
-	border-radius: 0 0.25rem 0.25rem 0;
+	/* border-radius: 0 0.25rem 0.25rem 0; */
+	border-radius: 0.5rem;
 	line-height: 1.7;
 }
 

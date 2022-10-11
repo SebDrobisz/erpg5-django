@@ -67,17 +67,22 @@ Après l'ajout d'une tâche, l'application redirige vers l'index des tâches.
 > * 🐇 En définissant un nouveau formulaire qui hérite de `forms.Form`.
 >    Le champ `assignee` pourra vous poser problème. Le voici
 >    ```python
->    assignee = forms.ModelChoiceField(queryset=Developer.objects.all(), required=False)
+>    assignee = forms.ModelChoiceField(
+>                   queryset=Developer.objects.all(), 
+>                   required=False)
 >    ```
 >    Vous trouverez davantage de doc sur le `ModelChoiceField` [ici](https://docs.djangoproject.com/fr/4.1/topics/forms/modelforms/).
+>
 > * 🧙 Mais vous pouvez également utiliser l'héritage de `ModelForm` plutôt que de définir les champs du formulaire.
 
 ### Dans le détail d'un développeur
 
 ⭐️ Ajoutez la possibilité de créer une tâche dans la vue détail d'un développeur. Lorsqu'une tâche sera créée, l'utilisateur sera redirigé vers l'index des tâches. Ce n'est pas optimal, mais nous ferons avec.
 * Il serait agréable que le formulaire soit prérempli au niveau du développeur assigné. Lors de l'ajout du formulaire dans le contexte de la page détail d'un développeur, ajoutez une valeur initiale pour le champ `assignee` du formulaire envoyé par la vue ([exemple](https://docs.djangoproject.com/en/4.1/ref/forms/api/#initial-form-values)).
+
 * Il serait aussi bien de ne pas exposer l'utilisateur à une erreur possible. Désactivez le champ pour que celui-ci ne soit pas modifiable. Attention, un champ désactivé n'est pas envoyé dans les données `POST`.
-   Aide : 
+
+   **Aide :** 
 
    * [Désactiver un champ](https://docs.djangoproject.com/en/4.1/ref/forms/fields/#disabled)
    * `<un formulaire>.fields` permet d'accéder aux champs d'un formulaire. Chaque clé représente le nom d'un champ et la valeur associé le champ lui-même (l'objet python).
