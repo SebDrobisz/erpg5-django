@@ -1,7 +1,7 @@
 ---
 title: Gestion des tâches
 description:
-layout: ../../../layouts/MainLayout.astro
+layout: ../../../../layouts/MainLayout.astro
 ---
 
 Nous allons maintenant ajouter la gestion des tâches. Attention, nous allons installer les bases ensemble, vous ferez le reste seul.

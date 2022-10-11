@@ -1,7 +1,7 @@
 ---
 title: Les tests
 description: 
-layout: ../../../layouts/MainLayout.astro
+layout: ../../../../layouts/MainLayout.astro
 ---
 
 Avant d'aller plus loin, il est temps de procéder à la rédaction de tests.

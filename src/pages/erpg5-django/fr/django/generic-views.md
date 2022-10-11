@@ -1,7 +1,7 @@
 ---
 title: Vues génériques
 description: 
-layout: ../../../layouts/MainLayout.astro
+layout: ../../../../layouts/MainLayout.astro
 ---
 
 En Django, il y a les vues fonctions que nous avons déjà vues, mais il y a aussi les vues génériques (vues classes). Ces dernières, plus récentes, ont pour objectif de simplifier davantage la création de vue.

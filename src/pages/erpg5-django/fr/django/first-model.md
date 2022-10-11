@@ -1,7 +1,7 @@
 ---
 title: Mon premier modèle
 description: Docs intro
-layout: ../../../layouts/MainLayout.astro
+layout: ../../../../layouts/MainLayout.astro
 ---
 
 ## Mon premier modèle

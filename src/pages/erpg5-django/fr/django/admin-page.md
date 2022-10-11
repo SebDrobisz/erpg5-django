@@ -1,7 +1,7 @@
 ---
 title: Page d'administration
 description: 
-layout: ../../../layouts/MainLayout.astro
+layout: ../../../../layouts/MainLayout.astro
 ---
 
 Vous voici presque à la fin de ce tutoriel. Les dernières parties permettent la gestion des utilisateurs.

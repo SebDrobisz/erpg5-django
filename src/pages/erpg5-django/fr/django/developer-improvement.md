@@ -1,7 +1,7 @@
 ---
 title: Amélioration des pages développeurs
 description: 
-layout: ../../../layouts/MainLayout.astro
+layout: ../../../../layouts/MainLayout.astro
 ---
 
 Prenons un peu de temps pour améliorer le rendu de nos pages web.

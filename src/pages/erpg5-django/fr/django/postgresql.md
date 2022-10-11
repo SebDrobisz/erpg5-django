@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL
 description: 
-layout: ../../../layouts/MainLayout.astro
+layout: ../../../../layouts/MainLayout.astro
 ---
 
 Et si nous changions le SGBD afin d'utiliser PostgreSQL ? 

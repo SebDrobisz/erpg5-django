@@ -1,7 +1,7 @@
 ---
 title: Héritage de gabarit
 description: Docs intro
-layout: ../../../layouts/MainLayout.astro
+layout: ../../../../layouts/MainLayout.astro
 ---
 
 On vous a annoncé plus tôt que DRY est la devise de Django. Pourtant, si l'on regarde les gabarits, nous pouvons voir énormément de redondance. Nous allons améliorer cela et mettre un peu de style dans notre site.

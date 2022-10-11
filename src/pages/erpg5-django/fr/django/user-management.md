@@ -1,7 +1,7 @@
 ---
 title: Gestion des utilisateur
 description: 
-layout: ../../../layouts/MainLayout.astro
+layout: ../../../../layouts/MainLayout.astro
 ---
 
 Nous allons maintenant modifier le modèle développeur afin que ceux-ci soient des utilisateurs.
