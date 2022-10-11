@@ -8,7 +8,7 @@ Pour terminer notre site, nous allons limiter l'accès à certaines pages aux ut
 
 ## Limiter l'accès aux utilisateurs
 
-Nous allons empêcher aux utilisateurs non connectés d'accéder aux pages 
+Nous allons empêcher aux utilisateurs non connectés d'accéder aux pages
 
 * liste des développeurs,
 * détail d'un développeur et
