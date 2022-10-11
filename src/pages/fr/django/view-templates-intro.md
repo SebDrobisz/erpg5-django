@@ -1,7 +1,7 @@
 ---
 title: Vues et templates - introduction
 description: Docs intro
-layout: ../../../../layouts/MainLayout.astro
+layout: ../../../layouts/MainLayout.astro
 ---
 
 Une vue est un « type » de page Web dans votre application Django qui sert généralement à une fonction précise et possède un gabarit spécifique. Par exemple, dans une application de blog, vous pouvez avoir les vues suivantes :

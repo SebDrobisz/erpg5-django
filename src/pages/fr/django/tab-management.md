@@ -1,7 +1,7 @@
 ---
 title: Gestion des onglets actifs
 description:
-layout: ../../../../layouts/MainLayout.astro
+layout: ../../../layouts/MainLayout.astro
 ---
 
 Si vous avez prêté attention, le lien activé dans le menu de navigation reste celui des développeurs. C'est normal puisque nous ne l'avons pas changé.

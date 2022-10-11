@@ -1,7 +1,7 @@
 ---
 title: Formulaire développeur
 description:
-layout: ../../../../layouts/MainLayout.astro
+layout: ../../../layouts/MainLayout.astro
 ---
 
 ## Ajout d'un développeur

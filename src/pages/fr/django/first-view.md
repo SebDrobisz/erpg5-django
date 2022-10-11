@@ -1,7 +1,7 @@
 ---
 title: Ma première vue
 description: Docs intro
-layout: ../../../../layouts/MainLayout.astro
+layout: ../../../layouts/MainLayout.astro
 ---
 
 ## Ma première vue Django

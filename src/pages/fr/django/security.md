@@ -1,7 +1,7 @@
 ---
 title: Sécurité
 description: 
-layout: ../../../../layouts/MainLayout.astro
+layout: ../../../layouts/MainLayout.astro
 ---
 
 Pour terminer notre site, nous allons limiter l'accès à certaines pages aux utilisateurs connectés. Enfin, certains utilisateurs auront certaines permissions pour la gestion des tâches.

@@ -1,7 +1,7 @@
 ---
 title: Inclusion d'un gabarit
 description: 
-layout: ../../../../layouts/MainLayout.astro
+layout: ../../../layouts/MainLayout.astro
 ---
 
 On peut imaginer que pour une utilisation normale de l'application, l'ajout d'un développeur se fait de manière occasionnelle.
