@@ -17,7 +17,7 @@ Nous allons suivre ces 4 étapes :
 1. Adapter `UserCreationForm` et `UserChangeForm`.
 1. Ajouter le nouveau modèle à `admin.py`.
 
-⚠️ Avant de continuer, supprimez toute migration de votre base de données (`python manage.py migrate <app> zero`) et supprimez les fichiers migrations.
+> ⚠️ Avant de continuer, supprimez toute migration de votre base de données (`python manage.py migrate <app> zero`) et supprimez les fichiers migrations.
 
 #### Configuration du modèle d'utilisateur
 
