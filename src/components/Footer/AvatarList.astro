@@ -4,9 +4,10 @@ type Props = {
 	path: string;
 };
 const { path } = Astro.props as Props;
-const resolvedPath = `examples/docs/${path}`;
-const url = `https://api.github.com/repos/withastro/astro/commits?path=${resolvedPath}`;
-const commitsURL = `https://github.com/withastro/astro/commits/main/${resolvedPath}`;
+const resolvedPath = `${path}`;
+const url = `https://api.github.com/repos/sebdrobisz/erpg5-django/commits?path=${resolvedPath}`;
+const commitsURL = `https://github.com/sebdrobisz/erpg5-django/commits/master/${resolvedPath}`;
+// https://github.com/SebDrobisz/erpg5-django/commits/master/src/pages/fr/django/developer-improvement.md
 
 type Commit = {
 	author: {
