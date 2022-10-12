@@ -67,17 +67,19 @@ Modifiez le code comme ceci :
 <div class="path">developer/admin.py</div>
 
 ``` python
-# ...
-from task.models import Task                    👈 new
+  # ...
 
-class TaskInline(admin.TabularInline):          👈 new
-    model = Task                                👈 new
-    extra = 1                                   👈 new
-
-class DeveloperAdmin(admin.ModelAdmin):         👈 new
-    inlines = [TaskInline]                      👈 new
-
-admin.site.register(Developer, DeveloperAdmin)  👈 update
++ from task.models import Task 
+  
++ class TaskInline(admin.TabularInline): 
++     model = Task 
++     extra = 1 
+  
++ class DeveloperAdmin(admin.ModelAdmin): 
++     inlines = [TaskInline]
+  
+- admin.site.register(Developer)
++ admin.site.register(Developer, DeveloperAdmin)
 ```
 
 Enfin, lorsque vous affichez la **liste** des développeurs ou des tâches, vous voyez ce qui a été défini dans la méthode `__str__()`. C'est bien, mais on peut faire mieux.
@@ -87,12 +89,13 @@ Modifier les fichiers afin de détailler les champs que vous souhaitez lister.
 <div class="path">task/admin.py</div>
 
 ```python
-from .models import Task
-
-class TaskAdmin(admin.ModelAdmin):          👈new
-    list_display = ('title', 'description') 👈new
-
-admin.site.register(Task, TaskAdmin)        👈 update
+  from .models import Task
+  
++ class TaskAdmin(admin.ModelAdmin):         
++     list_display = ('title', 'description')
+  
+- admin.site.register(Task)
++ admin.site.register(Task, TaskAdmin)
 ```
 
 et 
@@ -100,9 +103,9 @@ et
 <div class="path">developer/admin.py</div>
 
 ``` python
-class DeveloperAdmin(admin.ModelAdmin):
-   list_display = ('first_name', 'last_name', 'is_free') 👈new
-   inlines = [TaskInline]
+  class DeveloperAdmin(admin.ModelAdmin):
++    list_display = ('first_name', 'last_name', 'is_free')
+     inlines = [TaskInline]
 ```
 
 Si vous êtes attentif, vous avez remarqué que `is_free` n'est pas un champ à proprement parlé, mais une méthode. Nous appelons cela un _attribut calculé_.
@@ -112,33 +115,34 @@ Vous pouvez également améliorer l'affichage en indiquant que le champ `is_free
 <div class="path">developer/models.py</div>
 
 ```python
-class Developer(models.Model):
-   first_name = models.CharField("first name", max_length=200)
-   last_name = models.CharField(max_length=200)
-
-   def is_free(self):
-       return self.tasks.count() == 0
+  class Developer(models.Model):
+      first_name = models.CharField("first name", max_length=200)
+      last_name = models.CharField(max_length=200)
    
-   def __str__(self):
-       return f"{self.first_name} {self.last_name}"
-
-   is_free.boolean = True             👈new
-   is_free.short_description = 'Free' 👈new
+      def is_free(self):
+          return self.tasks.count() == 0
+      
+      def __str__(self):
+          return f"{self.first_name} {self.last_name}"
+   
++     is_free.boolean = True            
++     is_free.short_description = 'Free'
 ```
 
 > ⚠️ Vous n'avez pas besoin de réaliser une migration pour cette étape. En effet, le fichier modèle a été modifié, mais aucun champ n'est impacté par les changements.
 
 Nous avons modifié le minimum de la page d'administration, mais vous pouvez configurer davantage votre page d'administration. 
-En utilisant les décorateurs par exemple : 
+
+Et même utiliser un décorateur : 
 
 <div class="path">task/admin.py</div>
 
 ``` python
-@admin.register(Task)                       👈 new
-class TaskAdmin(admin.ModelAdmin):         
-    list_display = ('title', 'description')
-
-#admin.site.register(Task, TaskAdmin)       👉 old
++ @admin.register(Task)
+  class TaskAdmin(admin.ModelAdmin):         
+      list_display = ('title', 'description')
+  
+- admin.site.register(Task, TaskAdmin)
 ```
 
 Voici un peu de lecture

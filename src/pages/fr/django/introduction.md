@@ -9,20 +9,52 @@ layout: ../../../layouts/MainLayout.astro
 Les objectifs de ces premiers laboratoires sont multiples.
 
 * Apprendre les fondements de Python :
-  * Différentes structures élémentaires ;
+  * différentes structures élémentaires ;
   * Les classes ;
   * Les modules...
+
 * Découvrir un framework web Python qui partage de nombreuses similitudes avec la suite logiciel Odoo dont vous apprendrez à créer une application.
 
-<!-- Quelques sources qui ont permis l'écriture de ce tutoriel.
+Quelques sources recommandées.
+
  * Le [tutoriel Django](https://docs.djangoproject.com/fr/4.1/intro/tutorial01/)
  * La [documentation Django](https://docs.djangoproject.com/en/4.1/)
- * [Django for professionals](https://djangoforprofessionals.com/) -->
+ * [Django for professionals](https://djangoforprofessionals.com/)
+
+## Légende
+
+Différents émojis sont parsemés ici et là, ceux-ci permettent d’attirer votre attention pour différentes raisons.
+
+|Emoji|Signification|
+|---|---|
+| 🐍 | Parenthèse Python |
+| ☕️ | Lien Java |
+| ✏️ | Il s'agit d'un petit exercice |
+| 🐇 | Faites ce qui est dit et admirer l'erreur |
+| ⚠️ | Source d'erreur |
+| 📖 | Lecture supplémentaire optionnelle, mais vivement recommandé |
+| 📃 | Note un peu plus personnelle |
+| 💩 | À ne pas faire reproduire |
+
+### Conventions
+
+#### Modications de code
+
+Lorsqu'un code est modifié, la convention suivante est suivie pour mettre en évidence les lignes ajoutées / supprimées.
+
+   ``` python
+     Ceci est une ligne déjà présente
+   + Ceci est une ligne qui doit être ajoutée
+   - Ceci est une ligne qui doit être retirée
+   ```
+
+### Paths
+
+Tous les chemins d'accès seront donnés relativement au répertoire racine du projet.
 
 ## Installation
 
 Pour procéder à l'installation, nous vous conseillons
-
  * d'installer `python 3.10+` ;
  * de vérifier quel alias pointe vers cette version : `python -V`  ou `python3 -V` 
  * installer `pip` qui est un gestionnaire de package pour `python` ;
@@ -37,26 +69,6 @@ Pour procéder à l'installation, nous vous conseillons
 > ```
 
 **Optionnellement**, vous pouvez jeter un oeil à [venv](https://docs.python.org/3/tutorial/venv.html) ; ou encore à [Docker](https://www.docker.com/).
-
-## Légende
-
-Il s'agit d'un cours avant tout, parfois vous verrez différents émojis. Ceux-ci permettent d’attirer votre attention de différentes manières.
-
-|Emoji|Signification|
-|---|---|
-| 🐍 | Parenthèse Python |
-| ☕️ | Lien Java |
-| ⭐️ | Il s'agit d'un petit exercice |
-| 🐇 | Faites ce qui est dit et admirer l'erreur |
-| 👈 new | Indique l'ajout d'un morceau de code|
-| ⚠️ | Source d'erreur |
-| 📖 | Lecture supplémentaire optionnelle, mais vivement recommandé |
-| 📃 | Note un peu plus personnelle |
-| 💩 | À ne pas faire reproduire |
-
-## Conventions
-
-1. Tous les chemins d'accès seront donnés relativement au répertoire racine du projet.
 
 ## Introduction
 

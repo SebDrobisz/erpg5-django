@@ -17,24 +17,28 @@ Et si nous changions le SGBD afin d'utiliser PostgreSQL ?
 
    <div class="path">mproject/settings.py</div>
 
-   ``` python
-   #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': BASE_DIR / 'db.sqlite3',
-    #},
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mproject',
-        'USER': '<le rôle>',
-        'PASSWORD': '<le mdp>',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-   ```
+``` python
+- 'default': {
+-     'ENGINE': 'django.db.backends.sqlite3',
+-     'NAME': BASE_DIR / 'db.sqlite3',
+- },
++ #'default': {
++ #    'ENGINE': 'django.db.backends.sqlite3',
++ #    'NAME': BASE_DIR / 'db.sqlite3',
++ #},
++ 'default': {
++     'ENGINE': 'django.db.backends.postgresql_psycopg2',
++     'NAME': 'mproject',
++     'USER': '<le rôle>',
++     'PASSWORD': '<le mdp>',
++     'HOST': 'localhost',
++     'PORT': '',
++ }
+```
 
 Et voilà, tout est fait !
 
-Enfin, n'oubliez pas de migrer 😉. (⭐️ Quelle commande allez-vous utiliser pour réaliser la migration ?)
+Enfin, n'oubliez pas de migrer 😉. (✏️ Quelle commande allez-vous utiliser pour réaliser la migration ?)
 
 ## Migrations
 
@@ -45,11 +49,12 @@ Imaginons que nous souhaitons ajouter un nouveau champ `username` à notre modè
 <div class="path">developer/models.py</div>
 
 ```python
-class Developer(models.Model):
-    first_name = models.CharField("first name", max_length=200)
-    last_name = models.CharField(max_length=200)
-    user_name = models.CharField(max_length=50)  👈 new
-    #...
+  class Developer(models.Model):
+      first_name = models.CharField("first name", max_length=200)
+      last_name = models.CharField(max_length=200)
++     user_name = models.CharField(max_length=50)
+
+      #...
 ```
 
 Saisissez la commande `python manage.py makemigrations` qui va vérifier les changements et générer un nouveau fichier permettant la migration.

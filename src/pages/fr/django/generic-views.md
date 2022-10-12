@@ -26,25 +26,25 @@ fonction `detail()`.
 <div class="path"> developer/views.py`</div>
 
 ``` python
-from django.views.generic import DetailView        👈 new
-
-#...
-
-class DevDetailVue(DetailView):                    👈 new
-    model = Developer                              👈 new
-    template_name = 'developer/detail.html'        👈 new
-
-# def detail(request, developer_id):
-#     #developer = Developer.objects.get(pk=developer_id)
-#     developer = get_object_or_404(Developer, pk=developer_id)
-#     return render(request, 'developer/detail.html', {'developer': developer})
++ from django.views.generic import DetailView 
+  
+  #...
+  
++ class DevDetailVue(DetailView): 
++     model = Developer 
++     template_name = 'developer/detail.html'
+  
+- def detail(request, developer_id):
+-     #developer = Developer.objects.get(pk=developer_id)
+-     developer = get_object_or_404(Developer, pk=developer_id)
+-     return render(request, 'developer/detail.html', {'developer': developer})
 ```
 
 * Nous utilisons ici la vue générique : `DetailView`. Cette vue permet l’abstraction des concepts vus pour afficher une page détaillée pour un type particulier d’objet (ici `Developer`).
 
-* Par défaut, la vue générique `DetailView` utilise un gabarit appelé `<nom app>/<nom modèle>_detail.html`. Dans notre cas, elle utiliserait le gabarit "`developer/developer_detail.html`". L’attribut `template_name` est utilisé pour signifier à Django d’utiliser un nom de gabarit spécifique plutôt que le nom de gabarit par défaut. Dans notre cas, nous avons choisi de renommer le template, mais cela n'était pas obligatoire. En revanche, cela le devient si vous devez afficher de deux manières différentes un même modèle.
+* Par défaut, la vue générique `DetailView` utilise un gabarit appelé `<nom app>/<nom modèle>_detail.html`. Dans notre cas, elle utiliserait le gabarit "`developer/developer_detail.html`". L’attribut `template_name` est utilisé pour signifier à Django d’utiliser un nom de gabarit spécifique plutôt que le nom de gabarit par défaut. Dans notre cas, nous avons choisi de renommer le gabarit, mais cela n'était pas obligatoire. En revanche, cela le devient si vous devez afficher de deux manières différentes un même modèle.
 
-* Dans les parties précédentes de ce tutoriel, le template `detail.html` a été renseigné avec un contexte qui contenait la variable de contexte `developer`. Pour `DetailView`, la variable `developer` est fournie automatiquement ; comme nous utilisons un modèle nommé `Developer`, Django sait donner un nom approprié à la variable de contexte.
+* Dans les parties précédentes de ce tutoriel, le gabarit `detail.html` a été renseigné avec un contexte qui contenait la variable de contexte `developer`. Pour `DetailView`, la variable `developer` est fournie automatiquement ; comme nous utilisons un modèle nommé `Developer`, Django sait donner un nom approprié à la variable de contexte.
 
 La vue générique `DetailView` s’attend à ce que la clé primaire capturée dans l’URL s’appelle "pk", nous allons donc changer `developer_id` en `pk` pour la vue générique.
 
@@ -55,14 +55,16 @@ Nous l'avions vu, path prend en deuxième paramètre une fonction vue. La transf
 <div class="path"> developer.urls.py</div>
 
 ``` python
-from .views import DevDetailVue                                👈 new
-#...
-urlpatterns = [
-    path('', views.index, name='index'),
-    #path('<int:developer_id>', views.detail, name='detail'),  👉 old
-    path('<int:pk>', DevDetailVue.as_view(), name='detail'),   👈 new
-    path('create', views.create, name='create'),
-]
++ from .views import DevDetailVue
+  
+  #...
+  
+  urlpatterns = [
+      path('', views.index, name='index'),
+-     path('<int:developer_id>', views.detail, name='detail'),
++     path('<int:pk>', DevDetailVue.as_view(), name='detail'),
+      path('create', views.create, name='create'),
+  ]
 ```
 
 > ⚠️ Pourquoi y a-t-il les parenthèses après `DevDetailVue.as_view()` et pas après `views.detail` ?
@@ -82,14 +84,15 @@ Commençons par créer notre classe comme si nous n'avions pas de formulaire.
 <div class="path">developer/views.py</div>
 
 ```python
-from django.views.generic import DetailView, ListView 👈 On ajoute ListView
-
-#...
-
-class IndexView(ListView):                                👈 new
-    model = Developer                                     👈 new
-    template_name = "developer/index.html"                👈 new
-    context_object_name = 'developers'                    👈 new
+- from django.views.generic import DetailView
++ from django.views.generic import DetailView, ListView
+  
+  #...
+  
++ class IndexView(ListView): 
++     model = Developer 
++     template_name = "developer/index.html"
++     context_object_name = 'developers'
 ```
 
 * Nous créons une nouvelle classe qui hérite de `ListView`.
@@ -108,27 +111,28 @@ méthode `get_context_data()`.
 <div class="path">developer/views.py</div>
 
 ```python
-from django.views.generic import DetailView, ListView
-
-#...
-
-class IndexView(ListView):
-    model = Developer
-    template_name = "developer/index.html"
-    context_object_name = 'developers'
-
-  #  def index(request):
-  #      context = {
-  #          'developers': Developer.objects.all(),
-  #          'form': DeveloperForm
-  #      }
-  #  
-  #      return render(request, 'developer/index.html', context)
-
-    def get_context_data(self, **kwargs):                             👈new
-        context = super(IndexView, self).get_context_data(**kwargs)   👈new
-        context['form'] = DeveloperForm                               👈new
-        return context                                                👈new
+  from django.views.generic import DetailView, ListView
+  
+  #...
+  
+- def index(request):
+-     context = {
+-         'developers': Developer.objects.all(),
+-         'form': DeveloperForm
+-     }
+- 
+-     return render(request, 'developer/index.html', context)
+  
+  class IndexView(ListView):
+      model = Developer
+      template_name = "developer/index.html"
+      context_object_name = 'developers'
+  
+  
++     def get_context_data(self, **kwargs): 
++         context = super(IndexView, self).get_context_data(**kwargs)
++         context['form'] = DeveloperForm 
++         return context 
 ```
 
 > *_Parenthèse Python 🐍_*
@@ -146,18 +150,21 @@ Il est maintenant temps d'associer une url à notre nouvelle classe vue. Rien de
 <div class="path">developer/urls.py</div>
 
 ``` python
-#...
-from .views import DevDetailVue, IndexView  👈 Ajout de IndexView
-#...
-urlpatterns = [
-    #path('', views.index, name='index'),         👈 old
-    path('', IndexView.as_view(), name='index'),  👈 new
-    path('<int:pk>', DevDetailVue.as_view(), name='detail'),    
-    path('create', views.create, name='create'),
-]
+  #...
+- from .views import DevDetailVue
++ from .views import DevDetailVue, IndexView
+  
+  #...
+
+  urlpatterns = [
+-     path('', views.index, name='index'),
++     path('', IndexView.as_view(), name='index'),
+      path('<int:pk>', DevDetailVue.as_view(), name='detail'),    
+      path('create', views.create, name='create'),
+  ]
 ```
 
-## Vue générique et Mixin
+## Vue générique et Mixins
 
 C'est bien gentil tout ça, mais tout cela m'a l'air bien compliqué et je ne sais pas où vous avez été cherché l'information. 😭
 

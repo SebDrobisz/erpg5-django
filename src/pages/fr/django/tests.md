@@ -17,15 +17,15 @@ Dans `developer.models.py`, ajoutez une méthode qui permet de vérifier si un d
 <div class="path">developer/models.py</div>
 
 ```python
-class Developer(models.Model):
-   first_name = models.CharField("first name", max_length=200)
-   last_name = models.CharField(max_length=200)
-
-   def is_free(self):                  👈 new
-       return self.tasks.count() == 0  👈 new
-
-   def __str__(self):
-       return f"{self.first_name} {self.last_name}"
+  class Developer(models.Model):
+     first_name = models.CharField("first name", max_length=200)
+     last_name = models.CharField(max_length=200)
+  
++    def is_free(self):                
++        return self.tasks.count() == 0
+  
+     def __str__(self):
+         return f"{self.first_name} {self.last_name}"
 ```
 ### `tests.py`
 
@@ -57,9 +57,7 @@ def test_is_free_with_one_tasks(self):
 ```
 
 Nous venons ici de créer une sous-classe de `django.test.TestCase` contenant 
-
 * une première méthode qui crée une instance `Developer` avec des données quelconques. Nous vérifions ensuite le résultat de `is_free()` qui devrait valoir `True`.
-
 * Une seconde méthode qui crée une même instance de `Developer`. Nous lui assignons cette fois-ci la tâche d'écrire le cours sur Django. Enfin, nous vérifions le résultat de la méthode `is_free()` qui devrait cette fois-ci valoir `False`.
 
 
@@ -73,10 +71,10 @@ Voici ce qui s’est passé :
 
 * La commande `manage.py test developer` a cherché des tests dans l’application `developer` ;
 * elle a trouvé une sous-classe de `django.test.TestCase` ;
-* elle a créé une base de données spéciale uniquement pour les tests ⚠️;
+* elle a créé une base de données spéciale uniquement pour les tests ⚠️ ;
 * elle a recherché des méthodes de test, celles dont le nom commence par test ;
 * dans `test_is_free_with_no_tasks`, elle a créé une instance de `Developer` ;
-* et à l’aide de la méthode assertIs(), elle a pu vérifier son bon fonctionnement.
+* et à l’aide de la méthode `assertIs()`, elle a pu vérifier son bon fonctionnement.
 
 Si le test avait échoué, (vous pouvez essayer), le test nous indique alors le nom du test qui a échoué ainsi que la ligne à laquelle l'échec s'est produit.
 
@@ -89,17 +87,17 @@ Cela se fait grâce à la méthode `setUp()`.
 <div class="path">developer/tests.py</div>
 
 ``` python
-def setUp(self):                                                            👈 new
-    Developer.objects.create(first_name="Sébastien", last_name="Drobisz")   👈 new
-
-#...
-    #dev = Developer.objects.create(first_name="Sébastien", last_name="Drobisz") 👈 old
-    dev = Developer.objects.get(first_name="Sébastien") 👈 new
-    self.assertIs(dev.is_free(), True)
-
-#...
-    #dev = Developer.objects.create(first_name="Sébastien", last_name="Drobisz") 👈 old
-    dev = Developer.objects.get(first_name="Sébastien") 👈 new
++ def setUp(self):                                                           
++     Developer.objects.create(first_name="Sébastien", last_name="Drobisz")  
+  
+  def test_is_free_with_no_tasks(self):
+-     dev = Developer.objects.create(first_name="Sébastien", last_name="Drobisz")
++     dev = Developer.objects.get(first_name="Sébastien")
+      self.assertIs(dev.is_free(), True)
+  
+  def test_is_free_with_one_tasks(self):
+-     dev = Developer.objects.create(first_name="Sébastien", last_name="Drobisz")
++     dev = Developer.objects.get(first_name="Sébastien")
 ```
 
 Pour plus d'informations sur la configuration des tests, vous pouvez lire [ce lien](https://docs.djangoproject.com/fr/4.1/topics/testing/overview/).
@@ -121,7 +119,7 @@ Nous commencerons encore une fois par le shell, **où nous devons faire quelques
 
 `setup_test_environment()` installe un moteur de rendu de gabarit qui va nous permettre d’examiner certains attributs supplémentaires des réponses, tels que `response.context` qui n’est normalement pas disponible. Notez que cette méthode ne crée pas de base de données de test, ce qui signifie que ce qui suit va être appliqué à la base de données existante et que par conséquent, le résultat peut légèrement différer en fonction des développeurs que vous avez déjà créées.
 
-> 📃Si vous obtenez une erreur étrange du style "Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.". Alors vous avez probablement oublié la mise en place de l'environement de test
+> 📃 Si vous obtenez une erreur étrange du style "Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.". Alors vous avez probablement oublié la mise en place de l'environnement de test
 
 #### Import d'un client de test
 
@@ -178,17 +176,17 @@ Dans le second test, nous vérifions que le prénom du développeur est bien aff
 
 ```python
 def test_one_developer(self):
-"""
-A developer is displayed on the index page.
-"""
-dev = Developer.objects.create(
-    first_name="Jonathan",
-    last_name="Lechien")
-response = self.client.get(reverse('developer:index'))
-self.assertEquals(response.status_code, 200)
-self.assertQuerysetEqual(response.context['developers'],
-    [dev])
-self.assertContains(response, dev.first_name)
+    """
+    A developer is displayed on the index page.
+    """
+    dev = Developer.objects.create(
+        first_name="Jonathan",
+        last_name="Lechien")
+    response = self.client.get(reverse('developer:index'))
+    self.assertEquals(response.status_code, 200)
+    self.assertQuerysetEqual(response.context['developers'],
+        [dev])
+    self.assertContains(response, dev.first_name)
 ```
 
 #### Tests de `DevDetailView`

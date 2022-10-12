@@ -94,7 +94,6 @@ Pour plus d'information sur les champs :
 #### Activation du modèle et migrations
 
 Ce petit morceau de code décrivant les modèles fournit beaucoup d’informations à Django. Cela lui permet de :
-
 * créer un schéma de base de données (instructions `CREATE TABLE`) pour cette application.
 * Créer une API Python d’accès aux bases de données pour accéder aux objets `Developer` et `Task`.
 
@@ -118,16 +117,16 @@ Pour inclure l’application dans notre projet, nous avons besoin d’ajouter un
 <div class="path">mproject/settings.py</div>
 
 ``` python
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-# My apps 👈 new
-    'developer.apps.DeveloperConfig', #👈 new
+  INSTALLED_APPS = [
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.messages',
+      'django.contrib.staticfiles',
+  
++ # My apps
++     'developer.apps.DeveloperConfig', 
 ```
 
 ##### Commande `makemigrations`
@@ -285,20 +284,20 @@ Continuons d'explorer
 Une seconde. `<Developer: Developer object (1)>` n’est pas une représentation très utile de cet objet. On va arranger cela en éditant le modèle `Developer` (dans le fichier developer/models.py) et en ajoutant une méthode `__str__()` à `Developer` et à `Task`:
 
 ``` python
-class Developer(models.Model):
-    first_name = models.CharField("first name", max_length=200)
-    last_name = models.CharField(max_length=200)
-
-    def __str__(self): 👈 new
-        return f"{self.first_name} {self.last_name}" 👈 new
-
-class Task(models.Model):
-    title = models.CharField(max_length=100, unique=True)
-    description = models.TextField()
-    assignee = models.ForeignKey(Developer, related_name="tasks", on_delete=models.CASCADE, null=True, verbose_name="assignee")
-
-    def __str__(self): 👈 new
-        return f"{self.title} ({self.description})" 👈 new
+  class Developer(models.Model):
+      first_name = models.CharField("first name", max_length=200)
+      last_name = models.CharField(max_length=200)
+  
++     def __str__(self):
++         return f"{self.first_name} {self.last_name}"
+  
+  class Task(models.Model):
+      title = models.CharField(max_length=100, unique=True)
+      description = models.TextField()
+      assignee = models.ForeignKey(Developer, related_name="tasks", on_delete=models.CASCADE, null=True, verbose_name="assignee")
+  
++     def __str__(self):
++         return f"{self.title} ({self.description})"
 ```
 
 > *_Parenthèse python 🐍_*

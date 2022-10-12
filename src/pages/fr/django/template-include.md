@@ -15,38 +15,37 @@ Un modal est une sorte de boîte de dialogue qui est affichée devant la page co
 <div class="path">developer/index.html</div>
 
 ``` html
-    <!--<form action="{% url 'developer:create' %}" method="post">    👈old
-       {% csrf_token %}                                               👈old
-       {{ form }}                                                     👈old
-       <button type="submit">Create</button>                          👈old
-   </form>                                                            👈old
-   -->
+- <form action="{% url 'developer:create' %}" method="post"> 
+-    {% csrf_token %} 
+-    {{ form }} 
+-    <button type="submit">Create</button>
+- </form>
 
-    <!-- Ajout d'un bouton pour faire apparaître la boîte de dialogue  👈 début de l'ajout -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-dev-modal">
-        Add user
-    </button>
-
-    <!-- Ajout du modal contenant le formulaire -->
-    <div class="modal fade " id="add-dev-modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">New developer</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{% url 'developer:create' %}" method="post">
-                        {% csrf_token %}
-                        {{ form }}
-                        <div>
-                            <button class="btn btn-primary" type="submit">Créer</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> <!-- 👈 fin de l'ajout -->
++ <!-- Ajout d'un bouton pour faire apparaître la boîte de dialogue -->
++ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-dev-modal">
++     Add user
++ </button>
++
++ <!-- Ajout du modal contenant le formulaire -->
++ <div class="modal fade " id="add-dev-modal">
++     <div class="modal-dialog">
++         <div class="modal-content">
++             <div class="modal-header">
++                 <h4 class="modal-title">New developer</h4>
++                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
++             </div>
++             <div class="modal-body">
++                 <form action="{% url 'developer:create' %}" method="post">
++                     {% csrf_token %}
++                     {{ form }}
++                     <div>
++                         <button class="btn btn-primary" type="submit">Créer</button>
++                     </div>
++                 </form>
++             </div>
++         </div>
++     </div>
++ </div>
 ```
 
 ## Modal et respect du DRY
@@ -94,15 +93,15 @@ Dans `developer/index.html`, remplacez tout ce code par l'inclusion du fichier `
 <div class="path">developer/index.html</div>
 
 ```html
-    #...
-    </ul>
-    {% else %}
-        <p><strong>Il n'y a aucune dévelopeur enregistré !</strong>/p>
-    {% endif %}
-
-    <!-- bloc modal --> 👈 old
-    {% include 'developer/_create_dev_modal.html' %} 👈 new
-{% endblock content %}
+      #...
+      </ul>
+      {% else %}
+          <p><strong>Il n'y a aucune dévelopeur enregistré !</strong>/p>
+      {% endif %}
+  
+-     <!-- enlever tout le code html lié au modal -->
++     {% include 'developer/_create_dev_modal.html' %}
+  {% endblock content %}
 ```
 
 ## Crispy
@@ -119,27 +118,27 @@ Dans Django, il est possible d'ajouter facilement des apps externes. Nous allons
    
    <div class="path">mproject/settings.py</div>
 
-   ```python
-    INSTALLED_APPS = [                 
-        #...
-        'django.contrib.staticfiles',
-
-        #My apps
-        'developer.apps.DeveloperConfig',
-
-        #Third-party app           👈new
-        'crispy_forms',
-        "crispy_bootstrap5",
-    ]
-   ```
+```python
+  INSTALLED_APPS = [                 
+      #...
+      'django.contrib.staticfiles',
+      #My apps
+      'developer.apps.DeveloperConfig',
++     #Third-party app       
++     'crispy_forms',
++     "crispy_bootstrap5",
+  ]
+```
 3. Configurez le pack à utiliser en ajoutant les variables suivantes à la fin du fichier.
 
 <div class="path">mproject/settings.py</div>
 
 ``` python
-    # CRISPY FORM CONFIGURATION
-    CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-    CRISPY_TEMPLATE_PACK = 'bootstrap5'
+  # ...
+
++ # CRISPY FORM CONFIGURATION
++ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
++ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 ```
 
 4. Modifiez `{{ form }}` ou (`{{ form.as_qqc }}`) par `{{ form|crispy }}` et enfin, chargez le tag crispy dans votre template formulaire. Cela se fait grâce à la balise `{% load %}`.
@@ -147,13 +146,16 @@ Dans Django, il est possible d'ajouter facilement des apps externes. Nous allons
 <div class="path">developer/template/developer/_create_dev_modal_.html</div>
    
 ```html    
-   {% load crispy_forms_tags %}                   👈 new
-    
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-dev-modal">Add user</button>
-    #...
-                        <!-- {{ form.as_p }} --> 👈 old
-                        {{ form|crispy }}        👈 new
-    #...
++ {% load crispy_forms_tags %}
+  
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-dev-modal">Add user</button>
+  
+  #...
+
+-                     {{ form.as_p }}
++                     {{ form|crispy }}
+  
+  #...
 ```
 
 Votre formulaire propre et réutilisable est terminé.

@@ -15,7 +15,7 @@ Deux possibilités :
    ```
     request.resolver_match.namespaces.0
    ```
-   (⭐️ Dans `mproject/_base.html` ajoutez `<p>{{ request.resolver_match }}</p>` et vérifiez son contenu.)
+   (✏️ Dans `mproject/_base.html` ajoutez `<p>{{ request.resolver_match }}</p>` et vérifiez son contenu.)
 
 ## Gestion grâce au contexte
 
@@ -28,26 +28,26 @@ Dans cette section, nous allons implémenter grâce à la première option.
 <div class="path">developer/views.py</div>
 
 ``` python
-class IndexView(ListView): 
-
-    # ...
-
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context['form'] = DeveloperForm      
-        context['app'] = "developer"                               👈 new
-        return context 
-
-# ...
-
-class DevDetailVue(DetailView):
-    
-    # ...
-
-    def get_context_data(self, **kwargs):                           👈 new
-        context = super(DetailView, self).get_context_data(**kwargs)👈 new
-        context['app'] = "developer"                                👈 new
-        return context                                              👈 new
+  class IndexView(ListView): 
+  
+      # ...
+  
+      def get_context_data(self, **kwargs):
+          context = super(IndexView, self).get_context_data(**kwargs)
+          context['form'] = DeveloperForm      
++         context['app'] = "developer"
+          return context 
+  
+  # ...
+  
+  class DevDetailVue(DetailView):
+      
+      # ...
+  
++     def get_context_data(self, **kwargs): 
++         context = super(DetailView, self).get_context_data(**kwargs)
++         context['app'] = "developer"
++         return context 
 ```
 
 #### Application `task`
@@ -55,14 +55,14 @@ class DevDetailVue(DetailView):
 <div class="path">task/views.py</div>
 
 ``` python
-class IndexView(ListView):
-
-    # ...
-
-    def get_context_data(self, **kwargs):                           👈 new
-        context = super(IndexView, self).get_context_data(**kwargs) 👈 new
-        context['app'] = "task"                                     👈 new
-        return context                                              👈 new
+  class IndexView(ListView):
+  
+      # ...
+  
++     def get_context_data(self, **kwargs): 
++         context = super(IndexView, self).get_context_data(**kwargs)
++         context['app'] = "task"
++         return context 
 ```
 
 ### Gabarit `_base`

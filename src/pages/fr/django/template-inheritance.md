@@ -17,21 +17,22 @@ Ajoutez le code suivant :
 <div class="path">mproject/settings.py</div>
 
 ``` python
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'], 👈new
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+  TEMPLATES = [
+      {
+          'BACKEND': 'django.template.backends.django.DjangoTemplates',
+-         'DIRS': [],
++         'DIRS': [BASE_DIR / 'templates'],
+          'APP_DIRS': True,
+          'OPTIONS': {
+              'context_processors': [
+                  'django.template.context_processors.debug',
+                  'django.template.context_processors.request',
+                  'django.contrib.auth.context_processors.auth',
+                  'django.contrib.messages.context_processors.messages',
+              ],
+          },
+      },
+  ]
 ```
 
 Ce bout de code permet d'ajouter une liste de chemins dans lequel Django peut trouver un gabarit. Le chemin que l'on définit ici est un dossier qui se nomme `templates` et qui se trouve directement à la racine du projet. Créez ce dossier et ajoutez un fichier nommé `_base.html`.
@@ -109,7 +110,7 @@ Ainsi que le fichier `index.html`
 
 Les gabarits ont été modifiés afin que les morceaux de code soient placés correctement au sein des blocs `title` et `content` défini dans le gabarit de base. Nous avons ajouté la balise `{% extends '_base.html' %}` dans les gabarits `detail.html`et `index.html` afin qu'ils héritent du gabarit de base.
 
-Vérifiez que votre site fonctionne toujours aussi bien qu'avant. ⭐️
+Vérifiez que votre site fonctionne toujours aussi bien qu'avant. ✏️
 
 Pour plus d'information sur les balises, lisez cette [page](https://docs.djangoproject.com/fr/4.1/ref/templates/builtins/).
 
@@ -168,4 +169,4 @@ et ajoutons un menu
 
 Nous n'avons pas ajouté de fonctionnalité, mais notre site est maintenant un peu plus habillé. Passez de la vue `detail` à la vue `index` et profiter du site mis en style.
 
-⭐️ Quel bout de code permet de revenir à la liste des développeurs lorsque je clique sur le menu `Developers` ?
+✏️ Quel bout de code permet de revenir à la liste des développeurs lorsque je clique sur le menu `Developers` ?

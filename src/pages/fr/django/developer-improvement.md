@@ -110,21 +110,21 @@ Tout d'abord, ajoutez le code ci-dessous.
 <div class="path">developer/detail.html`</div>
 
 ``` html
-<div class="mt-4 p-5 bg-white rounded">
-    <form action="{% url 'developer:delete' developer.id %}" method="POST"> 👈 new
-        {% csrf_token %}                                                    👈 new
-        <button type="submit" class="btn btn-light btn-sm">                 👈 new
-            <i class="fa fa-trash"></i>                                     👈 new
-        </button>                                                           👈 new
-    </form>                                                                 👈 new 
-    <h1>{{ developer.first_name }} {{ developer.last_name }} </h1>
-    <p>{{ developer.tasks.all|length }} tâche{{developer.tasks.all|length|pluralize}} assignée{{developer.tasks.all|length|pluralize}}.</p>
-</div>
+  <div class="mt-4 p-5 bg-white rounded">
++     <form action="{% url 'developer:delete' developer.id %}" method="POST"> 
++         {% csrf_token %} 
++         <button type="submit" class="btn btn-light btn-sm"> 
++             <i class="fa fa-trash"></i>
++         </button>
++     </form>
+      <h1>{{ developer.first_name }} {{ developer.last_name }} </h1>
+      <p>{{ developer.tasks.all|length }} tâche{{developer.tasks.all|length|pluralize}} assignée{{developer.tasks.all|length|pluralize}}.</p>
+  </div>
 ```
 
 Ce code a pour objectif d'ajouter une petite corbeille près du nom d'un développeur afin de permettre sa suppression.
 
-> *_⭐️ Exercice_*
+> *_✏️ Exercice_*
 > 
 > 1. Inspirez-vous des vues existantes afin de permettre la suppression d'un développeur. Lors de la suppression, redirigez vers l'index des développeurs.
 > 1. Ajoutez le chemin adéquat

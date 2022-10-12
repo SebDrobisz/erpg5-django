@@ -14,7 +14,6 @@ Une vue est un « type » de page Web dans votre application Django qui sert gé
 * Action de commentaire – gère l’écriture de commentaires sur un billet donné.
 
 Dans notre application, nous possédons plusieurs vues. Parmi celles-ci :
-
 * une page d'accueil ;
 * une page qui liste les développeurs ;
 * une page qui donne le détail des développeurs - c'est-à-dire le nom, prénom ainsi que toutes ses tâches ;
@@ -34,7 +33,7 @@ De plus, il y a un problème : l’allure de la page est codée en dur dans la v
 
 Tout d’abord, créez un répertoire nommé `templates` dans votre répertoire `developer`. C’est là que Django recherche les gabarits.
 
-Le paramètre `TEMPLATES` de votre projet indique comment Django va charger et produire les gabarits. Le fichier de réglages par défaut configure un moteur DjangoTemplates dont l’option `APP_DIRS` est définie à True. Par convention, DjangoTemplates recherche un sous-répertoire `templates` dans chaque application figurant dans `INSTALLED_APPS`. (Allez vérifier la présence de cette option dans le fichier `mproject/settings.py` ⭐️)
+Le paramètre `TEMPLATES` de votre projet indique comment Django va charger et produire les gabarits. Le fichier de réglages par défaut configure un moteur DjangoTemplates dont l’option `APP_DIRS` est définie à `True`. Par convention, DjangoTemplates recherche un sous-répertoire `templates` dans chaque application figurant dans `INSTALLED_APPS`. (Allez vérifier la présence de cette option dans le fichier `mproject/settings.py` ✏️)
 
 Dans le répertoire `templates` que vous venez de créer, créez un autre répertoire nommé `developer` dans lequel vous placez un nouveau fichier `index.html`. Autrement dit, le chemin de votre gabarit doit être `developer/templates/developer/index.html`. Conformément au fonctionnement du chargeur de gabarit `app_directories` (cf. explication ci-dessus), vous pouvez désigner ce gabarit dans Django par `developer/index.html`.
 
@@ -77,18 +76,18 @@ Mettez à jour la vue afin de permettre le rendu de ce gabarit.
 <div class="path">developer/views.py</div>
 
 ``` python
-from django.shortcuts import render
-# from django.http import HttpResponse 👈 old
-
-from .models import Developer 👈 new
-
-def index(request):
-    # return HttpResponse("Hello, world. You're at the developers index.") 👈 old
-    context = { 👈 new
-        'developers': Developer.objects.all() 👈 new
-    } 👈 new
-
-    return render(request, 'developer/index.html', context) 👈 new
+  from django.shortcuts import render
+- from django.http import HttpResponse
+  
++ from .models import Developer
+  
+  def index(request):
+-     return HttpResponse("Hello, world. You're at the developers index.")
++     context = {
++         'developers': Developer.objects.all()
++     }
+  
++     return render(request, 'developer/index.html', context)
 ```
 
 Ce code charge le gabarit appelé `developer/index.html` et lui fournit un contexte. Ce contexte est un dictionnaire qui fait correspondre des objets Python (valeurs) à des noms de variables de gabarit (clés).
@@ -97,7 +96,7 @@ Chargez la page en appelant l’URL « `/developer/` » dans votre navigateur et
 
 ![dev](/django-tutorials/dev_page_01.png)
 
-> *_Exercices ⭐️_*
+> *_Exercices ✏️_*
 > 
 > * Supprimez chacun des développeurs et vérifiez que le message "II n'y a aucun développeur enregistré !" soit bien affiché. 
 > * Rajoutez ensuite au moins deux développeurs.
@@ -114,25 +113,25 @@ Nous allons ajouter une deuxième vue qui va nous permettre d'afficher le détai
 <div class="path">developer/urls.py</div>
 
 ``` python
-urlpatterns = [
-   path('', views.index, name='index'),
-   path('<int:developer_id>', views.detail, name='detail'), 👈 new
-]
+  urlpatterns = [
+     path('', views.index, name='index'),
++    path('<int:developer_id>', views.detail, name='detail'),
+  ]
 ```
 
 <div class="path">developer/view.py`</div>
 
 ``` python
-def index(request):
-    context = {
-        'developers': Developer.objects.all(),
-    }
-    return render(request, 'developer/index.html', context)
-
-
-def detail(request, developer_id): 👈new
-    developer = Developer.objects.get(pk=developer_id) 👈new
-    return render(request, 'developer/detail.html', {'developer': developer}) 👈new
+  def index(request):
+      context = {
+          'developers': Developer.objects.all(),
+      }
+      return render(request, 'developer/index.html', context)
+  
+  
++ def detail(request, developer_id):
++     developer = Developer.objects.get(pk=developer_id)
++     return render(request, 'developer/detail.html', {'developer': developer})
 ```
 
 <div class="path">developer/templates/developer/details.html</div>
@@ -159,7 +158,7 @@ Ouvrez votre navigateur à l’adresse « `/developer/3/` ». La méthode `detai
 
 > 📃 Nous vous suggérons ici d'utiliser la valeur 3 pour l'adresse. Cette valeur devrait correspond à l'id du développeur que vous avez recréé après avoir supprimé, comme demandé, les deux développeurs "sdr" et "jlc". Si vous avez un doute, vous pouvez aller dans le `shell` et lancer la commande `[dev.id for dev in Developer.objects.all()]` après avoir importé la classe `Developer`. Cette commande va vous retourner la liste des ids présents dans la base de donnée. (Ce code n'a rien de magique, il s'agit de la constitution d'une liste sur base d'un parcours des développeurs disponibles dans la BDD.)
 
-Lorsque quelqu’un demande une page de votre site Web, par exemple « `/developer/3/` », Django charge le module Python `mproject.urls` parce qu’il est mentionné dans le réglage `ROOT_URLCONF`. Il trouve la variable nommée `urlpatterns` et parcourt les motifs dans l’ordre. Après avoir trouvé la correspondance 'developer/', il retire le texte correspondant ("developer/") et passe le texte restant – "3/" – à la configuration d’URL “developer.urls” pour la suite du traitement. Dans le cas présent, c’est `<int:developer_id>/` qui correspond, ce qui aboutit à un appel à la vue `detail()` comme ceci :
+Lorsque quelqu’un demande une page de votre site Web, par exemple « `/developer/3/` », Django charge le module Python `mproject.urls` parce qu’il est mentionné dans le réglage `ROOT_URLCONF`. Il trouve la variable nommée `urlpatterns` et parcourt les motifs dans l’ordre. Après avoir trouvé la correspondance `developer/`, il retire le texte correspondant (`developer/`) et passe le texte restant – `3/` – à la configuration d’URL `developer.urls` pour la suite du traitement. Dans le cas présent, c’est `<int:developer_id>/` qui correspond, ce qui aboutit à un appel à la vue `detail()` comme ceci :
 
 ``` python
 detail(request=<HttpRequest object>, developer_id=3)
@@ -167,7 +166,7 @@ detail(request=<HttpRequest object>, developer_id=3)
 
 La partie `developer_id=3` vient de `<int:developer_id>`. En utilisant des chevrons, cela « capture » une partie de l’URL l’envoie en tant que paramètre nommé à la fonction de vue ; la partie `:developer_id>` de la chaîne définit le nom qui va être utilisé pour identifier le motif trouvé, et la partie `<int:` est un convertisseur qui détermine ce à quoi les motifs doivent correspondre dans cette partie du chemin d’URL.
 
-Pour plus d'info sur la distribution d'url, cela se passe [ici](https://docs.djangoproject.com/fr/4.1/topics/http/urls/). 📖
+Pour plus d'info sur la distribution d'URL, cela se passe [ici](https://docs.djangoproject.com/fr/4.1/topics/http/urls/). 📖
 
 ### Erreur 404
 
@@ -178,22 +177,22 @@ Nous pouvons corriger cela en utilisant la fonction `get_object_or_404`.
 <div class="path">developer/views.py</div>
 
 ``` python
-from django.shortcuts import render, get_object_or_404 👈new
-from django.http import HttpResponse
-
-from .models import Developer
-
-def index(request):
-    context = {
-        'developers': Developer.objects.all(),
-    }
-
-    return render(request, 'developer/index.html', context)
-
-def detail(request, developer_id):
-    #developer = Developer.objects.get(pk=developer_id) 👈old
-    developer = get_object_or_404(Developer, pk=developer_id) 👈new
-    return render(request, 'developer/detail.html', {'developer': developer})
++ from django.shortcuts import render, get_object_or_404
+  from django.http import HttpResponse
+  
+  from .models import Developer
+  
+  def index(request):
+      context = {
+          'developers': Developer.objects.all(),
+      }
+  
+      return render(request, 'developer/index.html', context)
+  
+  def detail(request, developer_id):
+-     developer = Developer.objects.get(pk=developer_id)
++     developer = get_object_or_404(Developer, pk=developer_id)
+      return render(request, 'developer/detail.html', {'developer': developer})
 ```
 
 
@@ -207,18 +206,19 @@ Revenons dans la vue `index` et plus précisément dans le gabarit et ajoutons c
 <div class="path">developer/templates/developer/index.html</div>
 
 ``` html
-# ...
-    {% if developers %}
-    <ul>
-        {% for dev in developers %}
-        {#<li>{{ dev.first_name }}</li>#} 👈 ceci est commenté !
-        <li><a href='/developer/{{ dev.id }}'>{{ dev.first_name }}</a></li> 👈new
-        {% endfor %}
-    </ul>
-    {% else %}
-        <p><strong>Il n'y a aucun développeur enregistré !</strong>/p>
-    {% endif %}
-# ...
+  # ...
+      {% if developers %}
+      <ul>
+          {% for dev in developers %}
+-         <li>{{ dev.first_name }}</li>
++         {#<li>{{ dev.first_name }}</li>#} 👈 ceci est commenté !
++         <li><a href='/developer/{{ dev.id }}'>{{ dev.first_name }}</a></li>
+          {% endfor %}
+      </ul>
+      {% else %}
+          <p><strong>Il n'y a aucun développeur enregistré !</strong>/p>
+      {% endif %}
+  # ...
 </body>
 ```
 
@@ -226,7 +226,7 @@ Vous pouvez maintenant essayer d'aller sur l'index de votre site et suivre les l
 
 #### Configurer les chemins via `{% url %}`
 
-Le problème de cette approche codée en dur et fortement couplée est qu’il devient fastidieux de modifier les URL dans des projets qui ont beaucoup de gabarits. Cependant, comme vous avez défini le paramètre « name » dans les fonctions `path()` du module `developer.urls`, vous pouvez supprimer la dépendance en chemins d’URL spécifiques définis dans les configurations d’URL en utilisant la balise de gabarit `{% url %}` :
+Le problème de cette approche codée en dur et fortement couplée est qu’il devient fastidieux de modifier les URL dans des projets qui ont beaucoup de gabarits. Cependant, comme vous avez défini le paramètre `name` dans les fonctions `path()` du module `developer.urls`, vous pouvez supprimer la dépendance en chemins d’URL spécifiques définis dans les configurations d’URL en utilisant la balise de gabarit `{% url %}` :
 
 <div class="path">developer/templates/developer/index.html</div>
 
@@ -247,7 +247,8 @@ Si vous souhaitez modifier l’URL de détail des développeurs, par exemple sur
 <div class="path">developer/urls.py</div>
 
 ``` python
-path('specifics/<int:developer_id>/', views.detail, > name='detail'), #👈 ajout de specifics
+- path('<int:developer_id>/', views.detail, > name='detail'),
++ path('specifics/<int:developer_id>/', views.detail, > name='detail'),
 ```
 
 #### Espaces de noms et noms d’URL

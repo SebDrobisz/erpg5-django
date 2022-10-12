@@ -48,12 +48,12 @@ Incluez les URLs de cette application à celle du projet (comme vous avez fait p
 <div class="path">mproject/urls.py</div>
 
 ``` python
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('developer/', include('developer.urls')),
-    path('task/', include('task.urls')),
-    path('', include('home.urls')), 👈 new
-]
+  urlpatterns = [
+      path('admin/', admin.site.urls),
+      path('developer/', include('developer.urls')),
+      path('task/', include('task.urls')),
++     path('', include('home.urls')),
+  ]
 ```
 
 Et enfin, ajoutez le fichier de configuration d'URL dans la nouvelle application.
@@ -94,7 +94,7 @@ Relancez le serveur si vous l'avez arrêté et testé à nouveau. Si vous avec l
 
 Remarquez que la variable de contexte `user` est automatiquement ajouté par Django dans tous les gabarits.
 
-⭐️ Le lien "home" ( 🏠 ) ne fonctionne pas. Corrigez-le et gérez l'effet "actif".
+✏️ Le lien "home" ( 🏠 ) ne fonctionne pas. Corrigez-le et gérez l'effet "actif".
 
 ### Affichage des tâches de l'utilisateur
 
@@ -161,12 +161,12 @@ Définissons les urls :
 <div class="path">mproject/urls.py</div>
 
 ``` python
-urlpatterns = [
-    path('', include('home.urls')),
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')), 👈 new
-    path('developer/', include('developer.urls')),
-    path('task/', include('task.urls')),
+  urlpatterns = [
+      path('', include('home.urls')),
+      path('admin/', admin.site.urls),
++     path('accounts/', include('django.contrib.auth.urls')),
+      path('developer/', include('developer.urls')),
+      path('task/', include('task.urls')),
 ```
 
 Et ajoutez un lien pour permettre la connexion.
@@ -174,13 +174,13 @@ Et ajoutez un lien pour permettre la connexion.
 <div class="path">home/templates/home/index.html</div>
 
 ```html
-{% else %}
-    <h1>Bienvenue sur mproject</h1>
-    <a href={% url 'login' %}>Log in</a>    👈 new
-{% endif %}
+  {% else %}
+      <h1>Bienvenue sur mproject</h1>
++     <a href={% url 'login' %}>Log in</a>
+  {% endif %}
 ```
 
-📃 L'url "login" fait partie des URLs inclues à l'étape précédente.
+📃 L'URL "login" fait partie des URLs inclues à l'étape précédente.
 
 🐇 Cliquez pour vous connecter ! Et prenez le temps de lire l'erreur obtenue.
 
@@ -208,23 +208,23 @@ Ajoutez donc le fichier suivant dans le dossier `templates` de votre projet avec
 ```
 (Ce gabarit devrait vous sembler naturel maintenant.)
 
-Essayez à nouveau de vous connecter avec les identifiants d'un développeur créé dans votre projet (en dehors de la page admin) et pour lequel vous avez défini un mot de passe ⭐️.
+Essayez à nouveau de vous connecter avec les identifiants d'un développeur créé dans votre projet (en dehors de la page admin) et pour lequel vous avez défini un mot de passe ✏️.
 
-Une nouvelle fois, vous rencontrez une page d'erreur. Moins évidente cette fois. Pas de panique toutefois ! Après vous êtes connecté, Django cherche à rediriger vers une page de profil qui n'existe pas. Et nous n'allons pas la crée ! Plutôt que de faire cela, nous allons rediriger l'utilisateur qui s'est connecté vers la page d'accueil de notre site.
+Une nouvelle fois, vous rencontrez une page d'erreur. Moins évidente cette fois. Pas de panique toutefois ! Après vous êtes connecté, Django cherche à rediriger vers une page de profil qui n'existe pas. Et nous n'allons pas la créer ! Plutôt que de faire cela, nous allons rediriger l'utilisateur qui s'est connecté vers la page d'accueil de notre site.
 
 Dans le fichier `settings.py`, ajoutez cette ligne à la fin.
 
 <div class="path">mproject/settings.py</div>
 
 ``` python
-# ...
-
-# AUHT CONFIGURATION
-AUTH_USER_MODEL = 'developer.Developer'
-LOGIN_REDIRECT_URL = 'home'             👈 new
+  # ...
+  
+  # AUHT CONFIGURATION
+  AUTH_USER_MODEL = 'developer.Developer'
++ LOGIN_REDIRECT_URL = 'home'            
 ```
 
-⭐️ Essayez et profitez 😉
+✏️ Essayez et profitez 😉
 
 ### Déconnexion
 
@@ -236,13 +236,13 @@ Nous allons gérer la déconnexion maintenant, rassurez-vous, le plus dur est fa
 <div class="path">home/templates/home/index.html</div>
 
 ``` html
-{% if user.is_authenticated %}
-<div class="p-1 m-3 bg-light">
-    <p class="float-right"><a href={% url 'logout' %}><i class="fa fa-sign-out"></i></a></p>👈 new
-    <h1>
-        {{ user.first_name }} {{ user.last_name }}
-    </h1>
-</div>
+  {% if user.is_authenticated %}
+  <div class="p-1 m-3 bg-light">
++     <p class="float-right"><a href={% url 'logout' %}><i class="fa fa-sign-out"></i></a></p>
+      <h1>
+          {{ user.first_name }} {{ user.last_name }}
+      </h1>
+  </div>
 ```
 
 Et on redirige vers notre page d'accueil en ajoutant la constante `LOGOUT_REDIRECT_URL` à notre fichier `settings.py` :
@@ -250,12 +250,12 @@ Et on redirige vers notre page d'accueil en ajoutant la constante `LOGOUT_REDIRE
 <div class="path">mproject/settings.py</div>
 
 ```python
-#... 
-
-# AUHT CONFIGURATION
-AUTH_USER_MODEL = 'developer.Developer'
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'            👈 new
+  #... 
+  
+  # AUHT CONFIGURATION
+  AUTH_USER_MODEL = 'developer.Developer'
+  LOGIN_REDIRECT_URL = 'home'
++ LOGOUT_REDIRECT_URL = 'home'
 ```
 
 La déconnexion est maintenant implémentée !

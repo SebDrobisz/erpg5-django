@@ -83,9 +83,10 @@ urlpatterns = [
 ```
 
 > *_Parenthèse python 🐍_*
+>
 > 1. Nous importons la fonction `path` du module `django.url`.
 > 2. Nous importons les éléments de notre répertoire `views` (c'est-à-dire notre fonction vue `index` écrite précédemment).
-> 3. Nous assignons à la variable `urlpatterns` une `liste` de chemin (ici un seul chemin). Notez qu'en Python, il est de bonne pratique de toujours terminer par une virgule, même si la liste n'est constitué que d'un seul élément.
+> 3. Nous assignons à la variable `urlpatterns` une liste de chemin (ici un seul chemin). Notez qu'en Python, il est de bonne pratique de toujours terminer par une virgule, même si la liste n'est constitué que d'un seul élément.
 
 L’étape suivante est de faire pointer la configuration d'URL racine vers le module `developer.urls`. Dans `mproject/urls.py`, ajoutez une importation `django.urls.include` et insérez un appel à `include()` dans la liste `urlpatterns`, ce qui donnera :
 
@@ -111,13 +112,13 @@ $ python manage.py runserver
 
 Ouvrez http://localhost:8000/developer/ dans votre navigateur et vous devriez voir le texte « Hello, world. You’re at the developers index. » qui a été défini dans la vue index.
 
-### Paramètres de la fonction path
+### Paramètres de la fonction `path`
 
-La fonction `path()` reçoit quatre paramètres, dont deux sont obligatoires : **route** et **view**, et deux facultatifs : **kwargs** et **name**. À ce stade, il est intéressant d’examiner le rôle de chacun de ces paramètres.
+La fonction `path()` reçoit quatre paramètres, dont deux sont obligatoires : `route` et `view`, et deux facultatifs : `kwargs` et `name`. À ce stade, il est intéressant d’examiner le rôle de chacun de ces paramètres.
 
 #### `route`
 
-**route** est une chaîne contenant un motif d’URL. Lorsqu’il traite une requête, Django commence par le premier motif dans `urlpatterns` puis continue de parcourir la liste en comparant l’URL reçue avec chaque motif jusqu’à ce qu’il en trouve un qui correspond.
+`route` est une chaîne contenant un motif d’URL. Lorsqu’il traite une requête, Django commence par le premier motif dans `urlpatterns` puis continue de parcourir la liste en comparant l’URL reçue avec chaque motif jusqu’à ce qu’il en trouve un qui correspond.
 
 Les motifs ne cherchent pas dans les paramètres GET et POST, ni dans le nom de domaine. Par exemple, dans une requête vers https://www.example.com/myapp/, l’URLconf va chercher `myapp/`. Dans une requête vers https://www.example.com/myapp/?page=3, l’URLconf va aussi chercher `myapp/`.
 

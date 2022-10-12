@@ -10,20 +10,18 @@ Nous allons maintenant ajouter la gestion des tâches. Attention, nous allons in
 
 Actuellement, les tâches (`Task`) sont dans le modèle `developer`. Nous avons choisi cela afin de rentrer plus rapidement dans la matière.
 
-⭐️ Commencez par créer et ajouter une nouvelle application `task` et ensuite, déplacez le modèle de `Task` dans cette nouvelle application.
+✏️ Commencez par créer et ajouter une nouvelle application `task` et ensuite, déplacez le modèle de `Task` dans cette nouvelle application.
 
 Pensez à :
-
 * écrire la méthode `__str__(self)` ;
 * ajouter l'application dans le fichier `settings.py` ;
 * gérer la migration dans la base de donnée.
 
 ## Lister les tâches
 
-⭐️ Inspirez-vous de ce qui a déjà été fait pour ajouter une nouvelle vue qui permet uniquement d'afficher la liste de toutes les tâches. Si un développeur est affecté à une tâche, son nom doit apparaître à côté. Sinon, il doit être indiqué qu'elle n'est pas assignée.
+✏️ Inspirez-vous de ce qui a déjà été fait pour ajouter une nouvelle vue qui permet uniquement d'afficher la liste de toutes les tâches. Si un développeur est affecté à une tâche, son nom doit apparaître à côté. Sinon, il doit être indiqué qu'elle n'est pas assignée.
 
 Pensez à :
-
 * gérer la nouvelle URL (création d'un nouveau fichier `task/urls.py` et modification du fichier `mproject/urls.py`) ;
 * utiliser une vue de type "classe" ;
 * ajouter un nouveau gabarit (pensez à l'héritage de `_base`).
@@ -47,12 +45,11 @@ Pour chacune des tâches listées, ajoutez un bouton pour la supprimer.
 
 Ce bout de code permet d'ajouter une corbeille pour supprimer une tâche.
 
-⭐️ Ajoutez le code nécessaire afin d'ajouter la fonctionnalité de suppression de tâches.
+✏️ Ajoutez le code nécessaire afin d'ajouter la fonctionnalité de suppression de tâches.
 
 ## Création d'une tâche
 
 Ajoutons la possibilité d'ajouter des tâches
-
 1. dans la vue tâche,
 1. dans la vue d'un développeur.
 
@@ -61,7 +58,7 @@ Après l'ajout d'une tâche, l'application redirige vers l'index des tâches.
 
 ### Dans la page d'index des tâches
 
-⭐️ On vous donne un petit coup de pouce et le reste est dans vos mains.
+✏️ On vous donne un petit coup de pouce et le reste est dans vos mains.
 
 > Précédemment, vous avez créé un formulaire pour la création de développeur. 
 > * 🐇 En définissant un nouveau formulaire qui hérite de `forms.Form`.
@@ -77,7 +74,7 @@ Après l'ajout d'une tâche, l'application redirige vers l'index des tâches.
 
 ### Dans le détail d'un développeur
 
-⭐️ Ajoutez la possibilité de créer une tâche dans la vue détail d'un développeur. Lorsqu'une tâche sera créée, l'utilisateur sera redirigé vers l'index des tâches. Ce n'est pas optimal, mais nous ferons avec.
+✏️ Ajoutez la possibilité de créer une tâche dans la vue détail d'un développeur. Lorsqu'une tâche sera créée, l'utilisateur sera redirigé vers l'index des tâches. Ce n'est pas optimal, mais nous ferons avec.
 * Il serait agréable que le formulaire soit prérempli au niveau du développeur assigné. Lors de l'ajout du formulaire dans le contexte de la page détail d'un développeur, ajoutez une valeur initiale pour le champ `assignee` du formulaire envoyé par la vue ([exemple](https://docs.djangoproject.com/en/4.1/ref/forms/api/#initial-form-values)).
 
 * Il serait aussi bien de ne pas exposer l'utilisateur à une erreur possible. Désactivez le champ pour que celui-ci ne soit pas modifiable. Attention, un champ désactivé n'est pas envoyé dans les données `POST`.

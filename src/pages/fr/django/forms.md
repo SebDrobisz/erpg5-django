@@ -19,21 +19,21 @@ Ajoutez ce morceau de code dans le gabarit `index.html`
 <div class="path">developer/templates/developer/index.html</div>
 
 ``` html
- #...
- {% else %}
-     <p><strong>Il n'y a aucune dévelopeur enregistré !</strong>/p>
- {% endif %}
-
- <form action="{% url 'developer:create' %}" method="post"> 👈 new
-     {% csrf_token %}                                       👈 new
-
-     <label for="first_name">First name</label>             👈 new
-     <input type="text" name="first_name" required>         👈 new
-     <label for="last_name">Last name</label>               👈 new
-     <input type="text" name="last_name" required>          👈 new
-     <button type="submit">Create</button>                  👈 new
- </form>                                                    👈 new
-{% endblock content %}
+   #...
+   {% else %}
+       <p><strong>Il n'y a aucune dévelopeur enregistré !</strong>/p>
+   {% endif %}
+  
++  <form action="{% url 'developer:create' %}" method="post"> 
++      {% csrf_token %} 
++ 
++      <label for="first_name">First name</label>
++      <input type="text" name="first_name" required>
++      <label for="last_name">Last name</label>
++      <input type="text" name="last_name" required>
++      <button type="submit">Create</button>
++  </form>
+  {% endblock content %}
 ```
 
 Un résumé rapide :
@@ -51,12 +51,12 @@ Maintenant, nous allons créer une vue Django qui récupère les données envoy�
 <div class="path">developer/urls.py</div>
 
 ``` python
-app_name = 'developer'
-urlpatterns = [
-    path('', views.index, name='index'),
-    path('<int:developer_id>', views.detail, name='detail'),
-    path('create', views.create, name='create'),              👈 new
-]
+  app_name = 'developer'
+  urlpatterns = [
+      path('', views.index, name='index'),
+      path('<int:developer_id>', views.detail, name='detail'),
++     path('create', views.create, name='create'),
+  ]
 ```
 
 Ajoutez également la vue :
@@ -64,19 +64,22 @@ Ajoutez également la vue :
 <div class="path">developer/views.py</div>
 
 ``` python
-#...
-from django.http import HttpResponseRedirect 👈 new
-from django.urls import reverse 👈 new
-#...
-def create(request):                                          👈 new
-    Developer.objects.create(                                 👈 new
-        first_name=request.POST['first_name'],                👈 new
-        last_name = request.POST['last_name']                 👈 new
-    )                                                         👈 new
-    # Toujours renvoyer une HTTPResponseRedirect après avoir géré correctement
-    # les données de la requête POST. Cela empêche les données d'être postée deux
-    # fois si l'utilisateur clique sur le bouton précédent.
-    return HttpResponseRedirect(reverse('developer:index'))   👈 new
+  #...
+
++ from django.http import HttpResponseRedirect
++ from django.urls import reverse
+
+  #...
+
++ def create(request): 
++     Developer.objects.create(
++         first_name=request.POST['first_name'], 
++         last_name = request.POST['last_name'] 
++     ) 
++     # Toujours renvoyer une HTTPResponseRedirect après avoir géré correctement
++     # les données de la requête POST. Cela empêche les données d'être postée deux
++     # fois si l'utilisateur clique sur le bouton précédent.
++     return HttpResponseRedirect(reverse('developer:index'))
 ```
 
 Ce code contient quelques points encore non abordés dans ce tutoriel :
@@ -131,16 +134,16 @@ Nous allons maintenant modifier le gabarit afin que celui-ci affiche le formulai
 <div class="path">developer/index.html</div>
 
 ``` html
-    <form action="{% url 'developer:create' %}" method="post">
-        {% csrf_token %}
-
-        <!--<label for="first_name">First name</label>
-        <input type="text" name="first_name" required>
-        <label for="last_name">Last name</label>
-        <input type="text" name="last_name" required>-->
-        {{ form }}                                        👈 new
-        <button type="submit">Create</button>
-    </form>
+  <form action="{% url 'developer:create' %}" method="post">
+      {% csrf_token %}
+  
+      <!--<label for="first_name">First name</label>
+      <input type="text" name="first_name" required>
+      <label for="last_name">Last name</label>
+      <input type="text" name="last_name" required>-->
++     {{ form }}
+      <button type="submit">Create</button>
+  </form>
 ```
 
 #### Envoyez le formulaire au gabarit
@@ -150,17 +153,17 @@ Le gabarit n'est évidement pas en mesure de deviner quel formulaire il doit aff
 <div class="path">developer/views.py</div>
 
 ``` python
-#...
-from .forms import DeveloperForm                👈 new
-
-def index(request):
-    context = {
-        'developers': Developer.objects.all(),
-        'form': DeveloperForm,                  👈 new
-    }
-
-    return render(request, 'developer/index.html', context)
-#...
+  #...
++ from .forms import DeveloperForm
+  
+  def index(request):
+      context = {
+          'developers': Developer.objects.all(),
++         'form': DeveloperForm,  
+      }
+  
+      return render(request, 'developer/index.html', context)
+  #...
 ```
 
 #### Valider le formulaire
@@ -170,20 +173,22 @@ Nous allons maintenant utiliser ce formulaire afin d'obtenir les données saisie
 <div class="path"> developer/views.py`</div>
 
 ``` python
-#...
-def create(request):
-    form = DeveloperForm(request.POST)                    👈 new
+  #...
 
-    if form.is_valid():                                   👈 new
-        Developer.objects.create(                         👈 new
-            first_name=form.cleaned_data['first_name'],   👈 new
-            last_name=form.cleaned_data['last_name']      👈 new
-        )                                                 👈 new
-    # Toujours renvoyer une HTTPResponseRedirect après avoir géré correctement
-    # les données de la requête POST. Cela empêche les données d'être postée deux
-    # fois si l'utilisateur clique sur le bouton précédent.
-    return HttpResponseRedirect(reverse('developer:index'))
-#...
+  def create(request):
++     form = DeveloperForm(request.POST)
+  
++     if form.is_valid(): 
++         Developer.objects.create(
++             first_name=form.cleaned_data['first_name'], 
++             last_name=form.cleaned_data['last_name'] 
++         ) 
+      # Toujours renvoyer une HTTPResponseRedirect après avoir géré correctement
+      # les données de la requête POST. Cela empêche les données d'être postée deux
+      # fois si l'utilisateur clique sur le bouton précédent.
+      return HttpResponseRedirect(reverse('developer:index'))
+
+  #...
 ```
 
 Notez que nous n'utilisons plus l'instruction `request.POST['xxx']` pour récupérer la donnée associée à un champ, mais `form.cleaned_data['first_name'], `. Cela a plusieurs impacts.
@@ -200,16 +205,17 @@ Django a prévu une meilleure manière de procéder afin de créer un formulaire
 <div class="path"> developer/forms.py</div>
 
 ```python
-from django import forms
-
-from .models import Developer
-
-class DeveloperForm(forms.ModelForm): 👈forms.ModelForm plutôt que forms.Form
-    # first_name = forms.CharField(label="First name", max_length=100)    👈 old
-    # last_name = forms.CharField(label='Last name', max_length=100)      👈 old
-    class Meta:                                   👈new
-        model = Developer                         👈new
-        fields = ['first_name', 'last_name']      👈new
+  from django import forms
+  
+  from .models import Developer
+  
+- class DeveloperForm(forms.Form):
++ class DeveloperForm(forms.ModelForm):
+-     first_name = forms.CharField(label="First name", max_length=100)
+-     last_name = forms.CharField(label='Last name', max_length=100)
++     class Meta:
++         model = Developer 
++         fields = ['first_name', 'last_name'] 
 ```
 
 Et voilà, nous avons un formulaire basé sur le modèle `Developer`. Et surtout, nous respectons le principe DRY !

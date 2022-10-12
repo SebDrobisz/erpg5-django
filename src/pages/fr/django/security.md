@@ -9,7 +9,6 @@ Pour terminer notre site, nous allons limiter l'accès à certaines pages aux ut
 ## Limiter l'accès aux utilisateurs
 
 Nous allons empêcher aux utilisateurs non connectés d'accéder aux pages
-
 * liste des développeurs,
 * détail d'un développeur et
 * liste des tâches.
@@ -19,29 +18,32 @@ Grâce aux mixins, c'est sans doute l'une des étapes les plus simples. Il suffi
 <div class="path">developer/views.py</div>
 
 ``` python
-from django.contrib.auth.mixins import LoginRequiredMixin   👈 new
-
-#...
-
-class IndexView(LoginRequiredMixin, ListView):              👈 ajout de LoginRequiredMixin
-
-#...
-
-class DevDetailVue(LoginRequiredMixin, DetailView):         👈 ajout de LoginRequiredMixin
-
-#...
++ from django.contrib.auth.mixins import LoginRequiredMixin
+  
+  #...
+  
+- class IndexView(ListView):
++ class IndexView(LoginRequiredMixin, ListView):
+  
+  #...
+  
+- class DevDetailVue(DetailView):
++ class DevDetailVue(LoginRequiredMixin, DetailView):
+  
+  #...
 ```
 
 <div class="path">task/views.py</div>
 
 ``` python
-from django.contrib.auth.mixins import LoginRequiredMixin   👈 new
-
-#...  
-
-class IndexView(LoginRequiredMixin, generic.ListView):      👈 ajout de LoginRequiredMixin
-
-#...  
++ from django.contrib.auth.mixins import LoginRequiredMixin
+  
+  #...  
+  
+- class IndexView( generic.ListView):
++ class IndexView(LoginRequiredMixin, generic.ListView):
+  
+  #...  
 ```
 
 Remarques :
@@ -77,7 +79,7 @@ class Task(models.Model):
        ]
 ```
 
-Réalisez une migration. ⭐️ Dans quelle table trouvez-vous les différentes permissions ?
+Réalisez une migration. ✏️ Dans quelle table trouvez-vous les différentes permissions ?
 
 À nouveau, utilisons les mixins pour ajouter cette fonctionnalité. Celui qui nous intéresse est `PermissionRequiredMixin`.
 
@@ -86,15 +88,19 @@ Modifiez la vue index des tâches.
 <div class="path">task/views.py</div>
 
 ```python
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin    👈 ajout de PermissionRequiredMixin
-#...
-class IndexView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):       👈 ajout de PermissionRequiredMixin
-    #...
+- from django.contrib.auth.mixins import LoginRequiredMixin
++ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+  
+  #...
 
-    permission_required = 'task.task_management'                                      👈 new
-
-    def get_context_data(self, **kwargs):
-        # ...
+- class IndexView(LoginRequiredMixin, generic.ListView):
++ class IndexView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+      #...
+  
++     permission_required = 'task.task_management'
+  
+      def get_context_data(self, **kwargs):
+          # ...
 ```
 
 Notez qu'il est nécessaire d'ajouter le champ `permission_required` avec la permission demandée.
