@@ -40,7 +40,7 @@ Grâce aux mixins, c'est sans doute l'une des étapes les plus simples. Il suffi
   
   #...  
   
-- class IndexView( generic.ListView):
+- class IndexView(generic.ListView):
 + class IndexView(LoginRequiredMixin, generic.ListView):
   
   #...  

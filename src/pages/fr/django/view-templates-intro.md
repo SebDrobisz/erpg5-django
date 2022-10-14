@@ -94,7 +94,7 @@ Ce code charge le gabarit appelé `developer/index.html` et lui fournit un conte
 
 Chargez la page en appelant l’URL « `/developer/` » dans votre navigateur et vous devriez voir une liste à puces contenant une liste de développeurs.
 
-![dev](/django-tutorials/dev_page_01.png)
+![dev](/erpg5-django/django-tutorials/dev_page_01.png)
 
 > *_Exercices ✏️_*
 > 
@@ -156,9 +156,9 @@ Nous allons ajouter une deuxième vue qui va nous permettre d'afficher le détai
 
 Ouvrez votre navigateur à l’adresse « `/developer/3/` ». La méthode `detail()` sera exécutée et affichera le développeur fourni dans l’URL.
 
-> 📃 Nous vous suggérons ici d'utiliser la valeur 3 pour l'adresse. Cette valeur devrait correspond à l'id du développeur que vous avez recréé après avoir supprimé, comme demandé, les deux développeurs "sdr" et "jlc". Si vous avez un doute, vous pouvez aller dans le `shell` et lancer la commande `[dev.id for dev in Developer.objects.all()]` après avoir importé la classe `Developer`. Cette commande va vous retourner la liste des ids présents dans la base de donnée. (Ce code n'a rien de magique, il s'agit de la constitution d'une liste sur base d'un parcours des développeurs disponibles dans la BDD.)
+> 📃 Nous vous suggérons ici d'utiliser la valeur 3 pour l'adresse. Cette valeur devrait correspond à l'id du développeur que vous avez recréé après avoir supprimé, comme demandé, les deux développeurs "sdr" et "jlc". Si vous avez un doute, vous pouvez aller dans le `shell` et lancer la commande `[dev.id for dev in Developer.objects.all()]` après avoir importé la classe `Developer`. Cette commande va vous retourner la liste des identifiants présents dans la base de donnée. (Ce code n'a rien de magique, il s'agit de la constitution d'une liste sur base d'un parcours des développeurs disponibles dans la BDD.)
 
-Lorsque quelqu’un demande une page de votre site Web, par exemple « `/developer/3/` », Django charge le module Python `mproject.urls` parce qu’il est mentionné dans le réglage `ROOT_URLCONF`. Il trouve la variable nommée `urlpatterns` et parcourt les motifs dans l’ordre. Après avoir trouvé la correspondance `developer/`, il retire le texte correspondant (`developer/`) et passe le texte restant – `3/` – à la configuration d’URL `developer.urls` pour la suite du traitement. Dans le cas présent, c’est `<int:developer_id>/` qui correspond, ce qui aboutit à un appel à la vue `detail()` comme ceci :
+Lorsque quelqu’un demande une page de votre site Web, par exemple `/developer/3/`, Django charge le module Python `mproject.urls` parce qu’il est mentionné dans le réglage `ROOT_URLCONF`. Il trouve la variable nommée `urlpatterns` et parcourt les motifs dans l’ordre. Après avoir trouvé la correspondance `developer/`, il retire le texte correspondant (`developer/`) et passe le texte restant – `3/` – à la configuration d’URL `developer.urls` pour la suite du traitement. Dans le cas présent, c’est `<int:developer_id>/` qui correspond, ce qui aboutit à un appel à la vue `detail()` comme ceci :
 
 ``` python
 detail(request=<HttpRequest object>, developer_id=3)
