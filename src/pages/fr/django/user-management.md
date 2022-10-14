@@ -40,7 +40,7 @@ Nous allons maintenant ajouter un paramètre `AUTH_USER_MODEL` au bas de notre f
   CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
   CRISPY_TEMPLATE_PACK = 'bootstrap5'
   
-+ # AUHT CONFIGURATION 
++ # AUTH CONFIGURATION 
 + AUTH_USER_MODEL = 'developer.Developer'
 ```
 
