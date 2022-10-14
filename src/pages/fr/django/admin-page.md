@@ -149,3 +149,5 @@ Voici un peu de lecture
 * [Tutoriel admin](https://docs.djangoproject.com/fr/4.1/intro/tutorial07/) 📖
 * [Doc admin](https://docs.djangoproject.com/fr/4.1/ref/contrib/admin/) 📖
 * [Action admin](https://docs.djangoproject.com/fr/4.1/ref/contrib/admin/actions/) 📖
+
+✏️ Ajoutez une action qui enlève l'assignation des tâches sélectionnées.
