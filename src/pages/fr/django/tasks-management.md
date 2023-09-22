@@ -87,3 +87,4 @@ Après l'ajout d'une tâche, l'application redirige vers l'index des tâches.
    * Pour qu'un champ ne soit pas obligatoire, il faut que son attribut `blank` soit mis à `True`.
    * Deux chemins (`path`) peuvent avoir le même nom, à condition d'avoir des motifs de route différents.
    * Pensez au concept DRY et à la manière dont nous avons créé le modal pour la création d'un développeur. Vous aurez besoin de `request.resolver_match.app_name` pour savoir si vous ajoutez la création d'une tâche à partir d'un développeur ou à partir de l'index des tâches.
+   

@@ -88,7 +88,7 @@ Copiez-y tout le code que vous venez d'ajouter dans le fichier `developer/index.
     </div> 
 ```
 
-Dans `developer/index.html`, remplacez tout ce code par l'inclusion du fichier `developer/_create_dev_modal_.html`. L'inclusion se fait grâce à la balise `{% include '<nom du fichier>' %}`.
+Dans `developer/index.html`, remplacez tout ce code par l'inclusion du fichier `developer/_create_dev_modal.html`. L'inclusion se fait grâce à la balise `{% include '<nom du fichier>' %}`.
 
 <div class="path">developer/index.html</div>
 
@@ -96,7 +96,7 @@ Dans `developer/index.html`, remplacez tout ce code par l'inclusion du fichier `
       #...
       </ul>
       {% else %}
-          <p><strong>Il n'y a aucune dévelopeur enregistré !</strong>/p>
+          <p><strong>Il n'y a aucune développeur enregistré !</strong>/p>
       {% endif %}
   
 -     <!-- enlever tout le code html lié au modal -->

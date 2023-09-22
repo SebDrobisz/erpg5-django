@@ -12,7 +12,7 @@ Premier chantier, la page qui liste l'ensemble des développeurs.
 
 ### Cas aucun développeur
 
-Dans le cas où il n'y a pas de développeur, vous devriez avoir le message `Il n'y a aucun dévelopeur enregistré` d'affiché sur la page.
+Dans le cas où il n'y a pas de développeur, vous devriez avoir le message `Il n'y a aucun développeur enregistré` d'affiché sur la page.
 
 Nous allons le mettre légèrement en forme.
 

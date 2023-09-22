@@ -21,6 +21,11 @@ Quelques sources recommandées.
  * La [documentation Django](https://docs.djangoproject.com/en/4.1/)
  * [Django for professionals](https://djangoforprofessionals.com/)
 
+## Enseignants
+
+* **JLC** - [Jonathan Lechien](http://ects.esi-bru.be/online/enseignants/jlc.html)
+* **SDR** - [Sébastien Drobisz](http://ects.esi-bru.be/online/enseignants/sdr.html)
+
 ## Légende
 
 Différents émojis sont parsemés ici et là, ceux-ci permettent d’attirer votre attention pour différentes raisons.

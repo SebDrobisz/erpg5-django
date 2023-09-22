@@ -115,7 +115,7 @@ Nous allons ajouter une deuxième vue qui va nous permettre d'afficher le détai
 ``` python
   urlpatterns = [
      path('', views.index, name='index'),
-+    path('<int:developer_id>', views.detail, name='detail'),
++    path('<int:developer_id>/', views.detail, name='detail'),
   ]
 ```
 
@@ -263,7 +263,7 @@ La réponse est donnée par l’ajout d’espaces de noms à votre configuration
 app_name = 'developer' 👈new
 urlpatterns = [
     path('', views.index, name='index'),
-    path('<int:developer_id>', views.detail, name='detail'),
+    path('<int:developer_id>/', views.detail, name='detail'),
 ]
 ```
 

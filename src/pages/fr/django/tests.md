@@ -38,8 +38,7 @@ Placez ce qui suit **dans une classe** `DeveloperModelTests` qui hérite de la c
 ``` python
 def test_is_free_with_no_tasks(self):
     """
-    is_free() returns True for developer with no
-    tasks.
+    is_free() returns True for developer with no tasks.
     """
 
     dev = Developer.objects.create(first_name="Sébastien", last_name="Drobisz")
@@ -47,8 +46,7 @@ def test_is_free_with_no_tasks(self):
 
 def test_is_free_with_one_tasks(self):
     """
-    is_free() returns False for developer with at least one
-    tasks.
+    is_free() returns False for developer with at least one tasks.
     """
 
     dev = Developer.objects.create(first_name="Sébastien", last_name="Drobisz")

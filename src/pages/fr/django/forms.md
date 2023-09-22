@@ -54,8 +54,8 @@ Maintenant, nous allons créer une vue Django qui récupère les données envoy�
   app_name = 'developer'
   urlpatterns = [
       path('', views.index, name='index'),
-      path('<int:developer_id>', views.detail, name='detail'),
-+     path('create', views.create, name='create'),
+      path('<int:developer_id>/', views.detail, name='detail'),
++     path('create/', views.create, name='create'),
   ]
 ```
 

@@ -131,9 +131,11 @@ Il reste à empêcher d'accéder au bouton d'ajout de tâche dans le détail d'u
 
 Le tutoriel est terminé, mais vous pouvez encore améliorer votre projet. Quelques pistes d'amélioration : 
 
-* Cacher les liens vers les pages `developeurs` et `tasks` aux visiteurs non connectés.
+* Cacher les liens vers les pages `developers` et `tasks` aux visiteurs non connectés.
 * Cacher le lien vers la page `tasks` aux utilisateurs qui n'ont pas la permission
 * Permettre la modification d'une tâche
 * ...
 
-🎆🎆🎆🎆 FIN 🎆🎆🎆🎆
+🎆🎆🎆🎆 Fin de la première partie 🎆🎆🎆🎆
+
+[Suite - Django avancé - 🐇💃](https://www.youtube.com/watch?v=dQw4w9WgXcQ)

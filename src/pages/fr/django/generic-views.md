@@ -61,9 +61,9 @@ Nous l'avions vu, path prend en deuxième paramètre une fonction vue. La transf
   
   urlpatterns = [
       path('', views.index, name='index'),
--     path('<int:developer_id>', views.detail, name='detail'),
-+     path('<int:pk>', DevDetailVue.as_view(), name='detail'),
-      path('create', views.create, name='create'),
+-     path('<int:developer_id>/', views.detail, name='detail'),
++     path('<int:pk>/', DevDetailVue.as_view(), name='detail'),
+      path('create/', views.create, name='create'),
   ]
 ```
 
@@ -159,8 +159,8 @@ Il est maintenant temps d'associer une url à notre nouvelle classe vue. Rien de
   urlpatterns = [
 -     path('', views.index, name='index'),
 +     path('', IndexView.as_view(), name='index'),
-      path('<int:pk>', DevDetailVue.as_view(), name='detail'),    
-      path('create', views.create, name='create'),
+      path('<int:pk>/', DevDetailVue.as_view(), name='detail'),    
+      path('create/', views.create, name='create'),
   ]
 ```
 
