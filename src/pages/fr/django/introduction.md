@@ -30,15 +30,15 @@ Différents émojis sont parsemés ici et là, ceux-ci permettent d’attirer vo
 | 🐍 | Parenthèse Python |
 | ☕️ | Lien Java |
 | ✏️ | Il s'agit d'un petit exercice |
-| 🐇 | Faites ce qui est dit et admirer l'erreur |
+| 🐇 | Execute-toi |
 | ⚠️ | Source d'erreur |
-| 📖 | Lecture supplémentaire optionnelle, mais vivement recommandé |
-| 📃 | Note un peu plus personnelle |
-| 💩 | À ne pas faire reproduire |
+| 📖 | Lecture supplémentaire optionnelle, mais vivement recommandée |
+| 📃 | Note |
+| 💩 | À ne pas reproduire |
 
 ### Conventions
 
-#### Modications de code
+#### Modifications de code
 
 Lorsqu'un code est modifié, la convention suivante est suivie pour mettre en évidence les lignes ajoutées / supprimées.
 
