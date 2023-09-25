@@ -119,7 +119,7 @@ Nous allons ajouter une deuxième vue qui va nous permettre d'afficher le détai
   ]
 ```
 
-<div class="path">developer/view.py`</div>
+<div class="path">developer/views.py`</div>
 
 ``` python
   def index(request):
@@ -134,7 +134,7 @@ Nous allons ajouter une deuxième vue qui va nous permettre d'afficher le détai
 +     return render(request, 'developer/detail.html', {'developer': developer})
 ```
 
-<div class="path">developer/templates/developer/details.html</div>
+<div class="path">developer/templates/developer/detail.html</div>
 
 ```html
 <!DOCTYPE html>
