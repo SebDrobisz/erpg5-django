@@ -81,10 +81,18 @@ Après l'ajout d'une tâche, l'application redirige vers l'index des tâches.
 
    **Aide :** 
 
+   * Dans la fonction `get_context_data` d'une vue générique `DetailView`, il est possible d'accéder à l'instance de l'objet courant grâce à `self.object`.
    * [Désactiver un champ](https://docs.djangoproject.com/en/4.1/ref/forms/fields/#disabled)
-   * `<un formulaire>.fields` permet d'accéder aux champs d'un formulaire. Chaque clé représente le nom d'un champ et la valeur associé le champ lui-même (l'objet python).
+   * `<un formulaire>.fields` permet d'accéder aux champs d'un formulaire. Chaque clé du dictionnaire représente le nom d'un champ et la valeur associé le champ lui-même (l'objet python).
    * En Python 🐍, il est possible d'ajouter des valeurs par défauts aux arguments. Exemple : `def create(request, developer_id=None):`
    * Pour qu'un champ ne soit pas obligatoire, il faut que son attribut `blank` soit mis à `True`.
+
+⚠️ Attention, avant de continuer, essayez de créer une nouvelle tâche à partir d'un développeur. Vérifiez que cette tâche a été ajoutée 🐇.
+
+Au cas où vous ne le sauriez pas, un champ `disabled` n'est pas renvoyée au serveur lors d'une requête `POST`. Votre création de tâche ne peut donc se clôturer puisqu'il manque l'information du développeur assigné à la tâche.
+
+   **Aide :**
+
    * Deux chemins (`path`) peuvent avoir le même nom, à condition d'avoir des motifs de route différents.
    * Pensez au concept DRY et à la manière dont nous avons créé le modal pour la création d'un développeur. Vous aurez besoin de `request.resolver_match.app_name` pour savoir si vous ajoutez la création d'une tâche à partir d'un développeur ou à partir de l'index des tâches.
    

@@ -92,7 +92,7 @@ Ainsi que le fichier `index.html`
 ``` html
 {% extends "_base.html" %}
 
-{% block title %} Liste des dévelopeurs {% endblock title %}
+{% block title %} Liste des développeurs {% endblock title %}
 
 {% block content %}
  {% if developers %}
@@ -103,7 +103,7 @@ Ainsi que le fichier `index.html`
      {% endfor %}
  </ul>
  {% else %}
-     <p><strong>Il n'y a aucune dévelopeur enregistré !</strong></p>
+     <p><strong>Il n'y a aucun développeur enregistré !</strong></p>
  {% endif %}
 {% endblock content %}
 ```

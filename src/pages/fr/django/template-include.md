@@ -96,7 +96,7 @@ Dans `developer/index.html`, remplacez tout ce code par l'inclusion du fichier `
       #...
       </ul>
       {% else %}
-          <p><strong>Il n'y a aucune développeur enregistré !</strong>/p>
+          <p><strong>Il n'y a aucun développeur enregistré !</strong>/p>
       {% endif %}
   
 -     <!-- enlever tout le code html lié au modal -->
