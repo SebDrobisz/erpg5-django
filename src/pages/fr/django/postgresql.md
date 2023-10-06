@@ -17,7 +17,8 @@ Et si nous changions le SGBD afin d'utiliser PostgreSQL ?
 votre rôle comme propriétaire de la base de donnée `mproject` : `alter database mproject owner to <role>;`
 7. Configurer l'utilisation de la base de données dans `settings.py`
 
-   <div class="path">mproject/settings.py</div>
+
+<div class="path">mproject/settings.py</div>
 
 ``` python
 - 'default': {
