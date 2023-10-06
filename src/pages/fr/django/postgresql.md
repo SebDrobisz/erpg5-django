@@ -36,6 +36,11 @@ Et si nous changions le SGBD afin d'utiliser PostgreSQL ?
 + }
 ```
 
+Pour éviter la manipulation de [schéma](https://docs.postgresql.fr/10/ddl-schemas.html), nous vous suggérons de définir
+votre rôle comme propriétaire de la base de donnée `mproject`.
+
+`alter database mproject owner to <role>;`
+
 Et voilà, tout est fait !
 
 Enfin, n'oubliez pas de migrer 😉. (✏️ Quelle commande allez-vous utiliser pour réaliser la migration ?)
