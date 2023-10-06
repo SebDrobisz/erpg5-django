@@ -13,7 +13,9 @@ Et si nous changions le SGBD afin d'utiliser PostgreSQL ?
 3. Créer un rôle (dans `psql`): `create role <le rôle> login password '<le mdp>';`
 4. Donner les droits nécessaires à ce nouveau rôle (dans `psql`) : `grant all privileges on database mproject to <le rôle>;`
 5. Installer `psycopg2`: `python -m pip install django psycopg2`.
-6. Configurer l'utilisation de la base de données dans `settings.py`
+6. Pour éviter la manipulation de [schéma](https://docs.postgresql.fr/10/ddl-schemas.html), nous vous suggérons de définir
+votre rôle comme propriétaire de la base de donnée `mproject` : `alter database mproject owner to <role>;`
+7. Configurer l'utilisation de la base de données dans `settings.py`
 
    <div class="path">mproject/settings.py</div>
 
@@ -35,11 +37,6 @@ Et si nous changions le SGBD afin d'utiliser PostgreSQL ?
 +     'PORT': '',
 + }
 ```
-
-Pour éviter la manipulation de [schéma](https://docs.postgresql.fr/10/ddl-schemas.html), nous vous suggérons de définir
-votre rôle comme propriétaire de la base de donnée `mproject`.
-
-`alter database mproject owner to <role>;`
 
 Et voilà, tout est fait !
 
