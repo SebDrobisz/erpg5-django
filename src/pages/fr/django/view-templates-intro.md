@@ -231,7 +231,7 @@ Le problème de cette approche codée en dur et fortement couplée est qu’il d
 <div class="path">developer/templates/developer/index.html</div>
 
 ``` python
-<li><a href="{% url 'detail' dev.id %}">{{ dev.first_name }}</> a></li>
+<li><a href="{% url 'detail' dev.id %}">{{ dev.first_name }}</a></li>
 ```
 
 Le principe de ce fonctionnement est que l’URL est recherchée dans les définitions du module `developer.urls`. Ci-dessous, vous pouvez voir exactement où le nom d’URL "detail" est défini :
@@ -247,8 +247,8 @@ Si vous souhaitez modifier l’URL de détail des développeurs, par exemple sur
 <div class="path">developer/urls.py</div>
 
 ``` python
-- path('<int:developer_id>/', views.detail, > name='detail'),
-+ path('specifics/<int:developer_id>/', views.detail, > name='detail'),
+- path('<int:developer_id>/', views.detail, name='detail'),
++ path('specifics/<int:developer_id>/', views.detail, name='detail'),
 ```
 
 #### Espaces de noms et noms d’URL
