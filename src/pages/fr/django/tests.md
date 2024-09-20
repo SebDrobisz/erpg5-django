@@ -161,7 +161,7 @@ class DeveloperIndexViewTests(TestCase):
         response = self.client.get(reverse('developer:index'))
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, "Il n'y a aucun développeur enregistré !")
-        self.assertQuerysetEqual(response.context['developers'], [])
+        self.assertQuerySetEqual(response.context['developers'], [])
 ```
 
 Dans le premier test, nous vérifions que la page existe bel et bien, qu'un message indiquant l'absence de développeur est affiché et que la variable `developer` du contexte est vide.
@@ -182,7 +182,7 @@ def test_one_developer(self):
         last_name="Lechien")
     response = self.client.get(reverse('developer:index'))
     self.assertEquals(response.status_code, 200)
-    self.assertQuerysetEqual(response.context['developers'],
+    self.assertQuerySetEqual(response.context['developers'],
         [dev])
     self.assertContains(response, dev.first_name)
 ```
