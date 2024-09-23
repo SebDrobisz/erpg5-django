@@ -159,7 +159,7 @@ class DeveloperIndexViewTests(TestCase):
         If no developers exist, an appropriate message is displayed.
         """
         response = self.client.get(reverse('developer:index'))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Il n'y a aucun développeur enregistré !")
         self.assertQuerySetEqual(response.context['developers'], [])
 ```
@@ -181,7 +181,7 @@ def test_one_developer(self):
         first_name="Jonathan",
         last_name="Lechien")
     response = self.client.get(reverse('developer:index'))
-    self.assertEquals(response.status_code, 200)
+    self.assertEqual(response.status_code, 200)
     self.assertQuerySetEqual(response.context['developers'],
         [dev])
     self.assertContains(response, dev.first_name)
@@ -207,8 +207,8 @@ class DevDetailView(TestCase):
             last_name="Lechien")
         url = reverse('developer:detail', args=(dev.id,))
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.context['developer'], dev)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['developer'], dev)
         self.assertContains(response, dev.first_name)
         self.assertContains(response, dev.last_name)
 
@@ -218,5 +218,5 @@ class DevDetailView(TestCase):
         """
         url = reverse('developer:detail', args=(1,))
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 ```
