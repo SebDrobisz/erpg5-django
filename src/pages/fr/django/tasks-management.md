@@ -94,5 +94,5 @@ Au cas où vous ne le sauriez pas, un champ `disabled` n'est pas renvoyée au se
    **Aide :**
 
    * Deux chemins (`path`) peuvent avoir le même nom, à condition d'avoir des motifs de route différents.
-   * Pensez au concept DRY et à la manière dont nous avons créé le modal pour la création d'un développeur. Vous aurez besoin de `request.resolver_match.app_name` pour savoir si vous ajoutez la création d'une tâche à partir d'un développeur ou à partir de l'index des tâches.
+   * Pensez au concept DRY et à la manière dont nous avons créé le modal pour la création d'un développeur. Dans un template, vous pouvez utiliser `request.resolver_match.app_name` pour connaître l'application qui l'utilise. Cela peut-être utile pour savoir si la création d'une tâche se fait à partir d'un développeur ou à partir de l'index des tâches. Une autre manière de procéder est de directement vérifier si des variables du contexte existent (par ex: `developer`).
    
