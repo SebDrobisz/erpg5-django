@@ -188,7 +188,7 @@ Cette erreur est simple, le gabarit qui doit permettre de se connecter n'a pas Ã
 
 Ajoutez donc le fichier suivant dans le dossier `templates` de votre projet avec l'arborescence attendue.
 
-<div class="path">mproject/templatesregistration/login.html</div>
+<div class="path">mproject/templates/registration/login.html</div>
 
 ```html
 {% extends "_base.html" %}
